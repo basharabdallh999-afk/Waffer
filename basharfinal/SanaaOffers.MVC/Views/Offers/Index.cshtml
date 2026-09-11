@@ -1,0 +1,169 @@
+@model IEnumerable<SanaaOffersApi.Domain.Entities.Offer>
+@{
+    ViewData["Title"] = "إدارة العروض والتخفيضات";
+}
+
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+    <div>
+        <h3 class="fw-bold text-dark mb-1"><i class="bi bi-tags-fill text-danger me-2"></i> إدارة العروض والتخفيضات</h3>
+        <p class="text-muted mb-0">نشر، مراجعة وتعديل كافة العروض والصفقات الخاطفة في صنعاء</p>
+    </div>
+    <div>
+        <a asp-action="Create" class="btn btn-primary-custom">
+            <i class="bi bi-plus-lg"></i> إضافة عرض جديد
+        </a>
+    </div>
+</div>
+
+<!-- فلترة العروض حسب النوع -->
+<div class="d-flex flex-wrap gap-2 mb-3">
+    <a asp-action="Index" asp-route-filter="all" class="btn btn-sm @(ViewBag.CurrentFilter == "all" ? "btn-danger" : "btn-light border") fw-bold">
+        <i class="bi bi-grid-fill me-1"></i> جميع العروض (@(ViewBag.TotalCount ?? Model.Count()))
+    </a>
+    <a asp-action="Index" asp-route-filter="active" class="btn btn-sm @(ViewBag.CurrentFilter == "active" ? "btn-danger" : "btn-light border") fw-bold">
+        <i class="bi bi-check-circle-fill text-success me-1"></i> العروض النشطة (@(ViewBag.ActiveCount ?? 0))
+    </a>
+    <a asp-action="Index" asp-route-filter="sponsored" class="btn btn-sm @(ViewBag.CurrentFilter == "sponsored" ? "btn-danger" : "btn-light border") fw-bold">
+        <i class="bi bi-star-fill text-warning me-1"></i> إعلانات البنرات المميزة (@(ViewBag.SponsoredCount ?? 0))
+    </a>
+    <a asp-action="Index" asp-route-filter="flash" class="btn btn-sm @(ViewBag.CurrentFilter == "flash" ? "btn-danger" : "btn-light border") fw-bold">
+        <i class="bi bi-lightning-fill text-warning me-1"></i> العروض الخاطفة (@(ViewBag.FlashCount ?? 0))
+    </a>
+</div>
+
+<div class="main-card">
+    <div class="main-card-header d-flex justify-content-between align-items-center">
+        <h5 class="main-card-title mb-0"><i class="bi bi-list-ul text-danger"></i> جدول العروض والترويج</h5>
+        <span class="badge bg-light text-dark border">إجمالي المعروض: @Model.Count()</span>
+    </div>
+    <div class="table-responsive p-3">
+        <table id="offersTable" class="table table-hover w-100">
+            <thead>
+                <tr>
+                    <th style="width: 50px;">#</th>
+                    <th>صورة العرض</th>
+                    <th>عنوان العرض</th>
+                    <th>المتجر</th>
+                    <th>التصنيف</th>
+                    <th>السعر الأصلي</th>
+                    <th>سعر الخصم</th>
+                    <th>نسبة الخصم</th>
+                    <th>إعلان بنر مميز</th>
+                    <th>النوع</th>
+                    <th>الحالة</th>
+                    <th style="width: 140px;">الإجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><span class="fw-bold text-muted">@item.Id</span></td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.ImageUrl))
+                            {
+                                <img src="~/@item.ImageUrl" alt="@item.Title" class="rounded-2 border" style="width:48px;height:48px;object-fit:cover;" />
+                            }
+                            else
+                            {
+                                <div class="bg-light rounded-2 border d-flex align-items-center justify-content-center text-muted" style="width:48px;height:48px;">
+                                    <i class="bi bi-image fs-5"></i>
+                                </div>
+                            }
+                        </td>
+                        <td>
+                            <span class="fw-bold text-dark d-block text-truncate" style="max-width: 200px;">@item.Title</span>
+                            <small class="text-muted">ينتهي: @item.EndDate.ToString("yyyy/MM/dd")</small>
+                        </td>
+                        <td>
+                            <span class="text-muted fw-semibold">@(item.Merchant?.StoreName ?? "غير محدد")</span>
+                        </td>
+                        <td>
+                            <span class="badge bg-light text-dark border">@(item.Category?.Name ?? "عام")</span>
+                        </td>
+                        <td>
+                            <span class="text-decoration-line-through text-muted">@item.OriginalPrice.ToString("N0") ر.ي</span>
+                        </td>
+                        <td>
+                            <span class="text-danger fw-bold fs-6">@item.DiscountedPrice.ToString("N0") ر.ي</span>
+                        </td>
+                        <td>
+                            <span class="badge bg-danger-subtle text-danger fw-bold px-2 py-1">
+                                -%@item.DiscountPercentage
+                            </span>
+                        </td>
+                        <td>
+                            <form method="post" asp-action="ToggleSponsored" asp-route-id="@item.Id" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                @if (item.IsSponsored)
+                                {
+                                    <button type="submit" class="badge bg-warning text-dark border-0 p-2 cursor-pointer text-decoration-none" title="انقر لإلغاء البنر المميز">
+                                        <i class="bi bi-star-fill text-dark me-1"></i> بنر مميز (#@item.DisplayPriority)
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="badge bg-light text-muted border border-secondary border-opacity-25 p-2 cursor-pointer text-decoration-none" title="انقر لترقية العرض كإعلان بنر مميز">
+                                        <i class="bi bi-star me-1"></i> عادي
+                                    </button>
+                                }
+                            </form>
+                        </td>
+                        <td>
+                            @if (item.IsFlashSale)
+                            {
+                                <span class="badge-flash"><i class="bi bi-lightning-fill"></i> خاطف</span>
+                            }
+                            else
+                            {
+                                <span class="badge-regular">عادي</span>
+                            }
+                        </td>
+                        <td>
+                            @if (!item.IsActive)
+                            {
+                                <span class="badge bg-secondary">غير نشط</span>
+                            }
+                            else if (item.IsExpired)
+                            {
+                                <span class="badge bg-danger">منتهي</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">نشط وسارٍ</span>
+                            }
+                        </td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-light" title="عرض التفاصيل">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-light text-primary" title="تعديل">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-light text-danger" title="صفحة الحذف">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                                <button type="button" class="btn btn-sm btn-light text-danger" title="حذف سريع عبر المودال" 
+                                        onclick="confirmDelete('/Offers/Delete/@item.Id', '@item.Title')">
+                                    <i class="bi bi-trash3-fill"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    $(document).ready(function() {
+        $('#offersTable').DataTable({
+            responsive: true,
+            order: [[0, 'desc']]
+        });
+    });
+</script>
+}

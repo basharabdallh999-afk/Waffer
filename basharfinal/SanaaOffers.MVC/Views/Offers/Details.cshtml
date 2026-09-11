@@ -1,0 +1,127 @@
+﻿@model SanaaOffersApi.Domain.Entities.Offer
+@{
+    ViewData["Title"] = "تفاصيل العرض: " + Model.Title;
+}
+
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+    <div>
+        <h3 class="fw-bold text-dark mb-1">تفاصيل العرض التجاري</h3>
+        <p class="text-muted mb-0">عرض كافة مواصفات العرض، السعر، نسبة الخصم والتاجر الناشر</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary-custom">
+            <i class="bi bi-pencil"></i> تعديل العرض
+        </a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">
+            <i class="bi bi-trash"></i> حذف العرض
+        </a>
+        <a asp-action="Index" class="btn btn-light-custom">
+            <i class="bi bi-arrow-right"></i> العودة للقائمة
+        </a>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Offer Image & Key Highlights -->
+    <div class="col-lg-5">
+        <div class="main-card">
+            <div class="position-relative bg-light rounded-top overflow-hidden" style="max-height:350px;">
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <img src="~/@Model.ImageUrl" alt="@Model.Title" class="w-100 h-100 object-fit-cover" style="min-height:280px;" />
+                }
+                else
+                {
+                    <div class="p-5 text-center text-muted" style="min-height:280px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                        <i class="bi bi-image fs-1 opacity-25 mb-2"></i>
+                        <span>لا توجد صورة مرفوعة لهذا العرض</span>
+                    </div>
+                }
+
+                @if (Model.IsFlashSale)
+                {
+                    <span class="badge-flash position-absolute top-0 end-0 m-3 fs-6">
+                        <i class="bi bi-lightning-charge-fill"></i> عرض خاطف (Flash Sale)
+                    </span>
+                }
+                <span class="discount-pill position-absolute bottom-0 start-0 m-3 fs-6">
+                    خصم @Model.DiscountPercentage%
+                </span>
+            </div>
+
+            <div class="main-card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted"><i class="bi bi-eye me-1"></i> المشاهدات: <strong>@Model.ViewsCount</strong></span>
+                    <span class="text-muted"><i class="bi bi-calendar-check me-1"></i> تاريخ النشر: <strong>@Model.CreatedAt.ToString("yyyy/MM/dd")</strong></span>
+                </div>
+
+                <div class="p-3 bg-light rounded-3 d-flex justify-content-between align-items-center">
+                    <div>
+                        <small class="text-muted d-block">السعر الأصلي</small>
+                        <span class="text-decoration-line-through text-muted fs-5">@Model.OriginalPrice.ToString("N0") ر.ي</span>
+                    </div>
+                    <div class="text-end">
+                        <small class="text-danger fw-bold d-block">السعر بعد الخصم</small>
+                        <span class="text-danger fw-bold fs-3">@Model.DiscountedPrice.ToString("N0") <small class="fs-6">ر.ي</small></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offer Specifications and Info -->
+    <div class="col-lg-7">
+        <div class="main-card">
+            <div class="main-card-header">
+                <h5 class="main-card-title"><i class="bi bi-info-circle text-danger"></i> مواصفات وبيانات العرض</h5>
+                @if (Model.IsExpired)
+                {
+                    <span class="badge bg-secondary px-3 py-2">العرض منتهي</span>
+                }
+                else
+                {
+                    <span class="badge bg-success px-3 py-2">العرض نشط حالياً</span>
+                }
+            </div>
+            <div class="main-card-body">
+                <h4 class="fw-bold text-dark mb-3">@Model.Title</h4>
+                
+                <div class="mb-4">
+                    <label class="fw-bold text-muted small d-block mb-1">وصف وتفاصيل العرض:</label>
+                    <p class="text-dark bg-light p-3 rounded-3" style="line-height:1.8;">
+                        @(string.IsNullOrWhiteSpace(Model.Description) ? "لا يوجد تفاصيل إضافية مكتوبة لهذا العرض." : Model.Description)
+                    </p>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-sm-6">
+                        <div class="p-3 rounded-3 bg-light border">
+                            <span class="text-muted fw-bold d-block mb-1"><i class="bi bi-shop text-primary me-1"></i> المتجر الناشر:</span>
+                            <h6 class="fw-bold text-dark mb-1">@(Model.Merchant?.StoreName ?? "غير محدد")</h6>
+                            <small class="text-muted"><i class="bi bi-geo-alt me-1"></i> @(Model.Merchant?.Address ?? "صنعاء")</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="p-3 rounded-3 bg-light border">
+                            <span class="text-muted fw-bold d-block mb-1"><i class="bi bi-grid text-danger me-1"></i> التصنيف:</span>
+                            <h6 class="fw-bold text-dark mb-1">@(Model.Category?.Name ?? "غير محدد")</h6>
+                            <small class="text-muted">@(Model.Category?.Description ?? "تصنيف تجاري")</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="p-3 rounded-3 bg-light border">
+                            <span class="text-muted fw-bold d-block mb-1"><i class="bi bi-calendar-event text-success me-1"></i> تاريخ البدء:</span>
+                            <span class="text-dark fw-bold">@Model.StartDate.ToString("yyyy/MM/dd")</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="p-3 rounded-3 bg-light border">
+                            <span class="text-muted fw-bold d-block mb-1"><i class="bi bi-clock-history text-danger me-1"></i> تاريخ النهاية:</span>
+                            <span class="text-danger fw-bold">@Model.EndDate.ToString("yyyy/MM/dd")</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

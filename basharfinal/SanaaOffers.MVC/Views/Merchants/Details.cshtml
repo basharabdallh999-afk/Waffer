@@ -1,0 +1,154 @@
+@model SanaaOffersApi.Domain.Entities.Merchant
+@{
+    ViewData["Title"] = "تفاصيل التاجر: " + Model.StoreName;
+}
+
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+    <div>
+        <h3 class="fw-bold text-dark mb-1">تفاصيل المتجر والحساب</h3>
+        <p class="text-muted mb-0">عرض كافة البيانات واعتماد الحساب الجغرافي والعروض التابعة</p>
+    </div>
+    <div class="d-flex gap-2">
+        <form asp-action="ToggleApproval" asp-route-id="@Model.Id" method="post" class="d-inline">
+            @Html.AntiForgeryToken()
+            @if (!Model.IsApproved)
+            {
+                <button type="submit" class="btn btn-success fw-bold">
+                    <i class="bi bi-check-circle-fill me-1"></i> موافقة واعتماد التاجر
+                </button>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-warning fw-bold">
+                    <i class="bi bi-pause-circle me-1"></i> تعليق اعتماد المتجر
+                </button>
+            }
+        </form>
+
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary-custom">
+            <i class="bi bi-pencil"></i> تعديل البيانات
+        </a>
+        <a asp-action="Index" class="btn btn-light-custom">
+            <i class="bi bi-arrow-right"></i> العودة للقائمة
+        </a>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Merchant Card Info & ID Documents -->
+    <div class="col-lg-5">
+        <div class="main-card mb-4">
+            <div class="main-card-header d-flex justify-content-between align-items-center">
+                <h5 class="main-card-title"><i class="bi bi-info-circle text-danger"></i> بطاقة المتجر والحساب</h5>
+                @if (Model.IsApproved)
+                {
+                    <span class="badge-approved"><i class="bi bi-check-circle-fill"></i> معتمد ومفعل</span>
+                }
+                else
+                {
+                    <span class="badge-pending"><i class="bi bi-clock"></i> قيد المراجعة</span>
+                }
+            </div>
+            <div class="main-card-body">
+                <div class="text-center pb-3 border-bottom mb-3">
+                    <div class="bg-primary-subtle text-danger rounded-circle mx-auto mb-2 d-flex align-items-center justify-content-center" style="width:70px;height:70px;font-size:32px;">
+                        <i class="bi bi-shop"></i>
+                    </div>
+                    <h4 class="fw-bold text-dark mb-1">@Model.StoreName</h4>
+                    <span class="text-muted small">تاريخ تقديم الطلب: @Model.CreatedAt.ToString("yyyy/MM/dd HH:mm")</span>
+                </div>
+
+                <div class="d-flex flex-column gap-3">
+                    <div class="d-flex align-items-center justify-content-between p-2 rounded bg-light">
+                        <span class="text-muted fw-bold"><i class="bi bi-person me-1"></i> الحساب المالك (اسم المستخدم):</span>
+                        <span class="text-dark fw-bold">@(Model.User?.FullName ?? "غير محدد")</span>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-between p-2 rounded bg-light">
+                        <span class="text-muted fw-bold"><i class="bi bi-envelope me-1"></i> البريد الإلكتروني:</span>
+                        <span class="text-dark">@(Model.User?.Email ?? "غير متوفر")</span>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-between p-2 rounded bg-light">
+                        <span class="text-muted fw-bold"><i class="bi bi-telephone me-1"></i> رقم الهاتف:</span>
+                        <span class="text-dark fw-bold">@(Model.Phone ?? "غير متوفر")</span>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-between p-2 rounded bg-light">
+                        <span class="text-muted fw-bold"><i class="bi bi-geo-alt me-1"></i> العنوان / موقع المتجر:</span>
+                        <span class="text-dark">@(Model.Address ?? "غير محدد")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Offers List -->
+    <div class="col-lg-7">
+        <div class="main-card">
+            <div class="main-card-header d-flex justify-content-between align-items-center">
+                <h5 class="main-card-title"><i class="bi bi-tags-fill text-danger"></i> العروض التابعة للمتجر (@(Model.Offers?.Count ?? 0))</h5>
+                <a asp-controller="Offers" asp-action="Create" class="btn btn-sm btn-primary-custom">
+                    <i class="bi bi-plus-lg"></i> نشر عرض جديد
+                </a>
+            </div>
+            <div class="main-card-body p-0">
+                @if (Model.Offers != null && Model.Offers.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>العرض</th>
+                                    <th>السعر الأصلي</th>
+                                    <th>سعر الخصم</th>
+                                    <th>النوع</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var offer in Model.Offers)
+                                {
+                                    <tr>
+                                        <td>
+                                            <span class="fw-bold text-dark d-block">@offer.Title</span>
+                                            <small class="text-muted">ينتهي في: @offer.EndDate.ToString("yyyy/MM/dd")</small>
+                                        </td>
+                                        <td><span class="text-decoration-line-through text-muted">@offer.OriginalPrice.ToString("N0") ر.ي</span></td>
+                                        <td><span class="text-danger fw-bold">@offer.DiscountedPrice.ToString("N0") ر.ي</span></td>
+                                        <td>
+                                            @if (offer.IsFlashSale)
+                                            {
+                                                <span class="badge-flash"><i class="bi bi-lightning-fill"></i> خاطف</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge-regular">عادي</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a asp-controller="Offers" asp-action="Details" asp-route-id="@offer.Id" class="btn btn-sm btn-light" title="تفاصيل">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                            <a asp-controller="Offers" asp-action="Edit" asp-route-id="@offer.Id" class="btn btn-sm btn-light text-primary" title="تعديل">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="p-5 text-center text-muted">
+                        <i class="bi bi-tags fs-1 d-block mb-2 text-light"></i>
+                        <p class="mb-2">لم يقم هذا التاجر بنشر أي عروض حتى الآن.</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

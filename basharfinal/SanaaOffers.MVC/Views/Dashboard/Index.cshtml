@@ -1,0 +1,332 @@
+@model SanaaOffers.MVC.ViewModels.DashboardViewModel
+@{
+    ViewData["Title"] = "لوحة التحكم الإحصائية";
+}
+
+<!-- Header -->
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+    <div>
+        <h3 class="fw-bold text-dark mb-1">مرحباً بك في لوحة التحكم 👋</h3>
+        <p class="text-muted mb-0">نظرة عامة وإحصائيات مباشرة على نشاط منصة عروض صنعاء</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a asp-controller="Offers" asp-action="Create" class="btn btn-primary-custom">
+            <i class="bi bi-plus-lg"></i> إضافة عرض جديد
+        </a>
+        <a asp-controller="Merchants" asp-action="Create" class="btn btn-light-custom">
+            <i class="bi bi-shop"></i> إضافة تاجر
+        </a>
+    </div>
+</div>
+
+@if (Model.PendingMerchantsCount > 0)
+{
+    <!-- Pending Merchants Notification Alert -->
+    <div class="alert alert-warning alert-dismissible fade show border-warning shadow-sm mb-4" role="alert">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+            <div class="d-flex align-items-center gap-3">
+                <div class="bg-warning text-dark rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+                    <i class="bi bi-bell-fill fs-5"></i>
+                </div>
+                <div>
+                    <h5 class="fw-bold mb-1 text-dark">يوجد (@Model.PendingMerchantsCount) طلبات تجار جديد بحاجة للمراجعة والاعتماد!</h5>
+                    <p class="mb-0 text-muted small">قام تجار جدد بالتسجيل ورفع صور الهويات الشخصية عبر تطبيق الموبايل.</p>
+                </div>
+            </div>
+            <a asp-controller="Merchants" asp-action="Index" class="btn btn-warning fw-bold">
+                <i class="bi bi-eye-fill me-1"></i> مراجعة وثائق التجار الآن
+            </a>
+        </div>
+    </div>
+}
+
+<!-- 4 Key Stat Cards -->
+<div class="row g-4 mb-4">
+    <!-- Offers Stat -->
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card red">
+            <div>
+                <div class="stat-label">إجمالي العروض والتخفيضات</div>
+                <div class="stat-value text-danger">@Model.TotalOffers</div>
+                <div class="stat-subtext text-muted">
+                    <span class="text-success fw-bold"><i class="bi bi-check2-circle"></i> @Model.ActiveOffers</span> نشط | 
+                    <span class="text-warning fw-bold"><i class="bi bi-star-fill"></i> @Model.SponsoredOffersCount</span> بنر مميز
+                </div>
+            </div>
+            <div class="stat-icon red">
+                <i class="bi bi-tags-fill"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Flash Sales Stat -->
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card orange">
+            <div>
+                <div class="stat-label">العروض الخاطفة (Flash Sales)</div>
+                <div class="stat-value text-warning">@Model.FlashSaleOffers</div>
+                <div class="stat-subtext text-muted">
+                    <span class="text-warning fw-bold"><i class="bi bi-lightning-fill"></i> صفقات سريعة</span>
+                </div>
+            </div>
+            <div class="stat-icon orange">
+                <i class="bi bi-lightning-charge-fill"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Merchants Stat -->
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card blue">
+            <div>
+                <div class="stat-label">إجمالي المتاجر والتجار</div>
+                <div class="stat-value text-info">@Model.TotalMerchants</div>
+                <div class="stat-subtext text-muted">
+                    <span class="text-success fw-bold"><i class="bi bi-shield-check"></i> @Model.ApprovedMerchants</span> معتمد | 
+                    <span class="text-warning fw-bold">@Model.PendingMerchantsCount</span> انتظار | 
+                    <span class="text-danger fw-bold">@Model.SuspendedMerchantsCount</span> موقوف
+                </div>
+            </div>
+            <div class="stat-icon blue">
+                <i class="bi bi-shop"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Users Stat -->
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card green">
+            <div>
+                <div class="stat-label">إجمالي المستخدمين المسجلين</div>
+                <div class="stat-value text-success">@Model.TotalUsers</div>
+                <div class="stat-subtext text-muted">
+                    <span class="text-primary fw-bold"><i class="bi bi-grid-fill"></i> @Model.TotalCategories</span> تصنيف متاح
+                </div>
+            </div>
+            <div class="stat-icon green">
+                <i class="bi bi-people-fill"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chart & Category Breakdown Row -->
+<div class="row g-4 mb-4">
+    <!-- Monthly Trend Chart -->
+    <div class="col-lg-8">
+        <div class="main-card h-100">
+            <div class="main-card-header">
+                <h5 class="main-card-title">
+                    <i class="bi bi-graph-up-arrow text-danger"></i> نمو العروض والتفاعل (آخر 6 أشهر)
+                </h5>
+                <span class="badge bg-success-subtle text-success fw-bold px-3 py-2 rounded-pill">
+                    <i class="bi bi-arrow-up-left"></i> نمو تصاعدي مستمر
+                </span>
+            </div>
+            <div class="main-card-body">
+                <div style="height: 300px; position: relative;">
+                    <canvas id="offersTrendChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Platform Highlights Card -->
+    <div class="col-lg-4">
+        <div class="main-card h-100">
+            <div class="main-card-header">
+                <h5 class="main-card-title">
+                    <i class="bi bi-pie-chart-fill text-info"></i> ملخص المنظومة
+                </h5>
+            </div>
+            <div class="main-card-body d-flex flex-column justify-content-between">
+                <div class="d-flex flex-column gap-3">
+                    <div class="d-flex align-items-center justify-content-between p-3 rounded-3 bg-light">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="bi bi-grid-3x3-gap-fill fs-4 text-danger"></i>
+                            <div>
+                                <h6 class="mb-0 fw-bold">التصنيفات</h6>
+                                <small class="text-muted">القطاعات المتاحة</small>
+                            </div>
+                        </div>
+                        <span class="fs-5 fw-bold text-dark">@Model.TotalCategories</span>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-between p-3 rounded-3 bg-light">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="bi bi-person-check-fill fs-4 text-success"></i>
+                            <div>
+                                <h6 class="mb-0 fw-bold">العملاء النشطون</h6>
+                                <small class="text-muted">مستخدمو المنصة</small>
+                            </div>
+                        </div>
+                        <span class="fs-5 fw-bold text-dark">@Model.ActiveUsers</span>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-between p-3 rounded-3 bg-light">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="bi bi-geo-alt-fill fs-4 text-warning"></i>
+                            <div>
+                                <h6 class="mb-0 fw-bold">نطاق التغطية</h6>
+                                <small class="text-muted">العاصمة صنعاء</small>
+                            </div>
+                        </div>
+                        <span class="badge bg-danger">شامل</span>
+                    </div>
+                </div>
+
+                <div class="pt-3 border-top mt-3 text-center">
+                    <a asp-controller="Offers" asp-action="Index" class="btn btn-outline-danger btn-sm w-100 fw-bold">
+                        استعراض كافة العروض <i class="bi bi-arrow-left ms-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Offers Table -->
+<div class="main-card">
+    <div class="main-card-header">
+        <h5 class="main-card-title">
+            <i class="bi bi-clock-history text-danger"></i> أحدث العروض المنشورة
+        </h5>
+        <a asp-controller="Offers" asp-action="Index" class="btn btn-sm btn-light-custom">
+            عرض الكل <i class="bi bi-chevron-left ms-1"></i>
+        </a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>العرض</th>
+                    <th>المتجر</th>
+                    <th>التصنيف</th>
+                    <th>السعر الأصلي</th>
+                    <th>سعر الخصم</th>
+                    <th>النوع</th>
+                    <th>الحالة</th>
+                    <th>الإجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.RecentOffers)
+                {
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                {
+                                    <img src="~/@item.ImageUrl" alt="@item.Title" class="rounded-2" style="width:40px;height:40px;object-fit:cover;" />
+                                }
+                                else
+                                {
+                                    <div class="bg-light rounded-2 d-flex align-items-center justify-content-center text-muted" style="width:40px;height:40px;">
+                                        <i class="bi bi-image"></i>
+                                    </div>
+                                }
+                                <div>
+                                    <span class="fw-bold text-dark d-block text-truncate" style="max-width:220px;">@item.Title</span>
+                                    <small class="text-muted">@item.CreatedAt.ToString("yyyy/MM/dd")</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="fw-semibold">@item.MerchantName</span></td>
+                        <td><span class="badge bg-light text-dark border">@item.CategoryName</span></td>
+                        <td><span class="text-decoration-line-through text-muted">@item.OriginalPrice.ToString("N0") ر.ي</span></td>
+                        <td><span class="text-danger fw-bold">@item.DiscountedPrice.ToString("N0") ر.ي</span> <small class="badge bg-danger-subtle text-danger">-%@item.DiscountPercentage</small></td>
+                        <td>
+                            @if (item.IsFlashSale)
+                            {
+                                <span class="badge-flash"><i class="bi bi-lightning-fill"></i> خاطف</span>
+                            }
+                            else
+                            {
+                                <span class="badge-regular">عادي</span>
+                            }
+                        </td>
+                        <td>
+                            @if (item.IsExpired)
+                            {
+                                <span class="badge bg-secondary">منتهي</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">نشط</span>
+                            }
+                        </td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a asp-controller="Offers" asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-light" title="تفاصيل"><i class="bi bi-eye"></i></a>
+                                <a asp-controller="Offers" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-light text-primary" title="تعديل"><i class="bi bi-pencil"></i></a>
+                                <button type="button" class="btn btn-sm btn-light text-danger" title="حذف" onclick="confirmDelete('/Offers/Delete/@item.Id', '@item.Title')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const ctx = document.getElementById('offersTrendChart').getContext('2d');
+        
+        const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+        gradient.addColorStop(0, 'rgba(192, 57, 43, 0.4)');
+        gradient.addColorStop(1, 'rgba(192, 57, 43, 0.0)');
+
+        const labels = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.ChartLabels));
+        const dataValues = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.ChartOfferData));
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'عدد العروض المنشورة',
+                    data: dataValues,
+                    borderColor: '#c0392b',
+                    backgroundColor: gradient,
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.35,
+                    pointBackgroundColor: '#c0392b',
+                    pointBorderColor: '#fff',
+                    pointHoverRadius: 7,
+                    pointRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        rtl: true,
+                        titleFont: { family: 'Cairo' },
+                        bodyFont: { family: 'Cairo' }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { font: { family: 'Cairo' } }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(0,0,0,0.05)' },
+                        ticks: { font: { family: 'Cairo' } }
+                    }
+                }
+            }
+        });
+    });
+</script>
+}

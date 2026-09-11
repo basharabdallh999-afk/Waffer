@@ -1,0 +1,101 @@
+@model IEnumerable<SanaaOffersApi.Domain.Entities.User>
+@using SanaaOffersApi.Domain.Entities
+@{
+    ViewData["Title"] = "إدارة العملاء والمستخدمين";
+}
+
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+    <div>
+        <h3 class="fw-bold text-dark mb-1"><i class="bi bi-people-fill text-danger me-2"></i> إدارة العملاء والمستخدمين</h3>
+        <p class="text-muted mb-0">عرض وإدارة حسابات المسؤولين، التجار، والعملاء المسجلين في المنصة</p>
+    </div>
+    <div>
+        <a asp-action="Create" class="btn btn-primary-custom">
+            <i class="bi bi-plus-lg"></i> إضافة مستخدم جديد
+        </a>
+    </div>
+</div>
+
+<div class="main-card">
+    <div class="main-card-header">
+        <h5 class="main-card-title"><i class="bi bi-list-ul text-danger"></i> قائمة الحسابات</h5>
+    </div>
+    <div class="table-responsive p-3">
+        <table id="usersTable" class="table table-hover w-100">
+            <thead>
+                <tr>
+                    <th style="width: 50px;">#</th>
+                    <th>المستخدم</th>
+                    <th>البريد الإلكتروني</th>
+                    <th>رقم الهاتف</th>
+                    <th>نوع الحساب (الدور)</th>
+                    <th>المتاجر التابعة</th>
+                    <th>تاريخ التسجيل</th>
+                    <th style="width: 140px;">الإجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><span class="fw-bold text-muted">@item.Id</span></td>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="user-avatar" style="width:34px;height:34px;font-size:14px;">
+                                    @(item.FullName.Length > 0 ? item.FullName.Substring(0, 1) : "م")
+                                </div>
+                                <span class="fw-bold text-dark">@item.FullName</span>
+                            </div>
+                        </td>
+                        <td><span class="text-muted">@item.Email</span></td>
+                        <td><span class="text-muted">@(item.Phone ?? "غير متوفر")</span></td>
+                        <td>
+                            @if (item.Role == UserRole.Admin)
+                            {
+                                <span class="badge bg-danger px-3 py-1">مدير نظام (Admin)</span>
+                            }
+                            else if (item.Role == UserRole.Merchant)
+                            {
+                                <span class="badge bg-primary px-3 py-1">تاجر (Merchant)</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success px-3 py-1">عميل (Consumer)</span>
+                            }
+                        </td>
+                        <td>
+                            <span class="badge bg-light text-dark border">
+                                <i class="bi bi-shop text-primary me-1"></i> @(item.Merchants?.Count ?? 0)
+                            </span>
+                        </td>
+                        <td><span class="text-muted small">@item.CreatedAt.ToString("yyyy/MM/dd")</span></td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-light" title="عرض التفاصيل">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-light text-primary" title="تعديل">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-light text-danger" title="صفحة الحذف">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    $(document).ready(function() {
+        $('#usersTable').DataTable({
+            responsive: true,
+            order: [[0, 'asc']]
+        });
+    });
+</script>
+}

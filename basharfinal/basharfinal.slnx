@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="SanaaOffersApi.API/SanaaOffersApi.API.csproj" />
+  <Project Path="SanaaOffersApi.Application/SanaaOffersApi.Application.csproj" />
+  <Project Path="SanaaOffersApi.Domain/SanaaOffersApi.Domain.csproj" />
+  <Project Path="SanaaOffersApi.Infrastructure/SanaaOffersApi.Infrastructure.csproj" />
+  <Project Path="SanaaOffers.MVC/SanaaOffers.MVC.csproj" />
+</Solution>

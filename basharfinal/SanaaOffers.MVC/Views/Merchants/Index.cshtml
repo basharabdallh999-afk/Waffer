@@ -1,0 +1,279 @@
+@model IEnumerable<SanaaOffersApi.Domain.Entities.Merchant>
+@{
+    ViewData["Title"] = "إدارة المتاجر والتجار";
+    int pendingCount = ViewBag.PendingCount ?? 0;
+}
+
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+    <div>
+        <h3 class="fw-bold text-dark mb-1"><i class="bi bi-shop text-danger me-2"></i> إدارة المتاجر والتجار</h3>
+        <p class="text-muted mb-0">مراجعة وتوثيق طلبات الانضمام، مراقبة صلاحيات النشر، وإدارة المتاجر في صنعاء</p>
+    </div>
+    <div>
+        <a asp-action="Create" class="btn btn-primary-custom">
+            <i class="bi bi-plus-lg"></i> إضافة تاجر جديد يدوياً
+        </a>
+    </div>
+</div>
+
+@if (pendingCount > 0)
+{
+    <div class="alert alert-warning border-start border-warning border-4 shadow-sm mb-4 d-flex align-items-center justify-content-between flex-wrap gap-2">
+        <div class="d-flex align-items-center gap-3">
+            <div class="bg-warning text-dark rounded-circle d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; font-size: 20px;">
+                <i class="bi bi-bell-fill"></i>
+            </div>
+            <div>
+                <h6 class="fw-bold mb-1 text-dark">يوجد (@pendingCount) طلب انضمام لمتجر جديد بانتظار المراجعة والتوثيق!</h6>
+                <p class="mb-0 text-muted small">التجار المسجلون عبر التطبيق لا يمكنهم نشر العروض حتى توافق الإدارة على توثيق متاجرهم.</p>
+            </div>
+        </div>
+        <a asp-action="Index" asp-route-filter="pending" class="btn btn-warning btn-sm fw-bold px-3">
+            <i class="bi bi-eye-fill me-1"></i> استعراض الطلبات الجديدة
+        </a>
+    </div>
+}
+
+<!-- فلترة المتاجر حسب الحالة -->
+<div class="d-flex flex-wrap gap-2 mb-3">
+    <a asp-action="Index" asp-route-filter="all" class="btn btn-sm @(ViewBag.CurrentFilter == "all" ? "btn-danger" : "btn-light border") fw-bold">
+        <i class="bi bi-grid-fill me-1"></i> جميع المتاجر (@(ViewBag.TotalCount ?? Model.Count()))
+    </a>
+    <a asp-action="Index" asp-route-filter="pending" class="btn btn-sm @(ViewBag.CurrentFilter == "pending" ? "btn-danger" : "btn-light border") fw-bold position-relative">
+        <i class="bi bi-clock-history me-1"></i> بانتظار التوثيق (@(ViewBag.PendingCount ?? 0))
+        @if (pendingCount > 0)
+        {
+            <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
+        }
+    </a>
+    <a asp-action="Index" asp-route-filter="approved" class="btn btn-sm @(ViewBag.CurrentFilter == "approved" ? "btn-danger" : "btn-light border") fw-bold">
+        <i class="bi bi-patch-check-fill text-success me-1"></i> المعتمدة والموثقة (@(ViewBag.ApprovedCount ?? 0))
+    </a>
+    <a asp-action="Index" asp-route-filter="suspended" class="btn btn-sm @(ViewBag.CurrentFilter == "suspended" ? "btn-danger" : "btn-light border") fw-bold">
+        <i class="bi bi-slash-circle-fill text-danger me-1"></i> الموقوفة عن النشر (@(ViewBag.SuspendedCount ?? 0))
+    </a>
+</div>
+
+<div class="main-card">
+    <div class="main-card-header d-flex justify-content-between align-items-center">
+        <h5 class="main-card-title mb-0"><i class="bi bi-list-ul text-danger"></i> قائمة المتاجر</h5>
+        <span class="badge bg-light text-dark border">المعروض: @Model.Count() متجر</span>
+    </div>
+    <div class="table-responsive p-3">
+        <table id="merchantsTable" class="table table-hover w-100 align-middle">
+            <thead>
+                <tr>
+                    <th style="width: 50px;">#</th>
+                    <th>اسم المتجر</th>
+                    <th>المالك / الحساب</th>
+                    <th>الهاتف</th>
+                    <th>العنوان في صنعاء</th>
+                    <th>العروض</th>
+                    <th>حالة التوثيق والنشر</th>
+                    <th style="width: 200px;">إدارة التوثيق والإيقاف</th>
+                    <th style="width: 110px;">الإجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="@(!item.IsApproved ? "table-warning bg-opacity-10" : (item.IsCurrentlySuspended ? "table-danger bg-opacity-10" : ""))">
+                        <td><span class="fw-bold text-muted">@item.Id</span></td>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="bg-primary-subtle text-danger rounded-2 d-flex align-items-center justify-content-center" style="width:38px;height:38px;font-size:16px;">
+                                    <i class="bi bi-shop"></i>
+                                </div>
+                                <div>
+                                    <span class="fw-bold text-dark d-block">@item.StoreName</span>
+                                    <small class="text-muted">تسجيل: @item.CreatedAt.ToString("yyyy/MM/dd")</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="text-muted"><i class="bi bi-person me-1"></i> @(item.User?.FullName ?? "غير محدد")</span>
+                            <small class="d-block text-muted">@(item.User?.Email ?? "")</small>
+                        </td>
+                        <td>
+                            <span class="text-muted">@(item.Phone ?? "غير متوفر")</span>
+                        </td>
+                        <td>
+                            <span class="text-muted small"><i class="bi bi-geo-alt text-danger me-1"></i> @(item.Address ?? "صنعاء")</span>
+                        </td>
+                        <td>
+                            <span class="badge bg-light text-dark border">
+                                <i class="bi bi-tags-fill text-danger me-1"></i> @(item.Offers?.Count ?? 0)
+                            </span>
+                        </td>
+                        <td>
+                            @if (!item.IsApproved)
+                            {
+                                <span class="badge bg-warning text-dark px-2 py-1">
+                                    <i class="bi bi-clock-history me-1"></i> بانتظار التوثيق
+                                </span>
+                            }
+                            else if (item.IsCurrentlySuspended)
+                            {
+                                <div class="d-inline-block">
+                                    <span class="badge bg-danger text-white px-2 py-1 d-block mb-1">
+                                        <i class="bi bi-slash-circle me-1"></i> موقوف عن النشر
+                                    </span>
+                                    <small class="text-danger d-block fw-semibold" style="font-size: 11px;">
+                                        @(item.SuspendedUntil.HasValue ? $"حتى {item.SuspendedUntil.Value:yyyy/MM/dd}" : "إيقاف نهائي")
+                                    </small>
+                                    @if (!string.IsNullOrEmpty(item.SuspensionReason))
+                                    {
+                                        <small class="text-muted d-block text-truncate" style="max-width: 140px;" title="@item.SuspensionReason">
+                                            السبب: @item.SuspensionReason
+                                        </small>
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success text-white px-2 py-1">
+                                    <i class="bi bi-patch-check-fill me-1"></i> موثق ومفعل
+                                </span>
+                            }
+                        </td>
+                        <td>
+                            <div class="d-flex flex-wrap gap-1">
+                                @if (!item.IsApproved)
+                                {
+                                    <form method="post" asp-action="Approve" asp-route-id="@item.Id" class="d-inline">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-sm btn-success fw-bold" title="موافقة وتوثيق المتجر">
+                                            <i class="bi bi-check-lg"></i> توثيق
+                                        </button>
+                                    </form>
+                                    <form method="post" asp-action="Reject" asp-route-id="@item.Id" class="d-inline" onsubmit="return confirm('هل أنت متأكد من رفض طلب هذا المتجر؟');">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-sm btn-outline-danger fw-bold" title="رفض الطلب">
+                                            <i class="bi bi-x-lg"></i> رفض
+                                        </button>
+                                    </form>
+                                }
+                                else if (item.IsCurrentlySuspended)
+                                {
+                                    <form method="post" asp-action="Unsuspend" asp-route-id="@item.Id" class="d-inline">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-sm btn-outline-success fw-bold" title="رفع الإيقاف والسماح للمتجر بنشر العروض مجدداً">
+                                            <i class="bi bi-arrow-counterclockwise"></i> تفعيل المتجر
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <button type="button" class="btn btn-sm btn-outline-warning text-dark fw-bold" 
+                                            onclick="openSuspendModal('@item.Id', '@item.StoreName')" title="إيقاف المتجر عن نشر العروض لفترة محددة أو نهائياً">
+                                        <i class="bi bi-pause-circle"></i> إيقاف النشر
+                                    </button>
+                                }
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-light" title="عرض التفاصيل والوثائق">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-light text-primary" title="تعديل">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-light text-danger" title="حذف">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal: إيقاف المتجر عن نشر العروض -->
+<div class="modal fade" id="suspendModal" tabindex="-1" aria-labelledby="suspendModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form method="post" asp-action="Suspend" id="suspendForm">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="id" id="suspendMerchantId" />
+                <div class="modal-header bg-warning bg-opacity-25">
+                    <h5 class="modal-title fw-bold text-dark" id="suspendModalLabel">
+                        <i class="bi bi-shield-exclamation text-warning me-2"></i> إيقاف المتجر عن نشر العروض
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="mb-3">أنت على وشك إيقاف المتجر: <strong id="suspendStoreName" class="text-danger"></strong> عن نشر أي عروض جديدة في منصة وتطبيق وفر.</p>
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">نوع الإيقاف:</label>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="isPermanent" id="typeTemp" value="false" checked onchange="toggleSuspendFields()">
+                            <label class="form-check-label" for="typeTemp">
+                                إيقاف مؤقت (لمدة محددة بالأيام)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="isPermanent" id="typePerm" value="true" onchange="toggleSuspendFields()">
+                            <label class="form-check-label text-danger fw-bold" for="typePerm">
+                                إيقاف نهائي للمتجر
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mb-3" id="durationDaysGroup">
+                        <label for="durationDays" class="form-label fw-bold">مدة الإيقاف بالأيام:</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" name="durationDays" id="durationDays" value="7" min="1" max="365">
+                            <span class="input-group-text">يوم</span>
+                        </div>
+                        <small class="text-muted">ينتهي الإيقاف تلقائياً بعد انقضاء هذه المدة.</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="suspendReason" class="form-label fw-bold">سبب الإيقاف (سيظهر للتاجر في التطبيق):</label>
+                        <textarea class="form-control" name="reason" id="suspendReason" rows="3" placeholder="مثال: نشر عروض مضللة، عدم الالتزام بنسب الخصم، مخالفة الشروط والأحكام..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="submit" class="btn btn-danger fw-bold">
+                        <i class="bi bi-slash-circle me-1"></i> تأكيد إيقاف المتجر
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    $(document).ready(function() {
+        $('#merchantsTable').DataTable({
+            responsive: true,
+            order: [[0, 'asc']]
+        });
+    });
+
+    function openSuspendModal(id, storeName) {
+        document.getElementById('suspendMerchantId').value = id;
+        document.getElementById('suspendStoreName').innerText = storeName;
+        document.getElementById('typeTemp').checked = true;
+        toggleSuspendFields();
+        var myModal = new bootstrap.Modal(document.getElementById('suspendModal'));
+        myModal.show();
+    }
+
+    function toggleSuspendFields() {
+        var isPermanent = document.getElementById('typePerm').checked;
+        var durationGroup = document.getElementById('durationDaysGroup');
+        if (isPermanent) {
+            durationGroup.style.display = 'none';
+        } else {
+            durationGroup.style.display = 'block';
+        }
+    }
+</script>
+}

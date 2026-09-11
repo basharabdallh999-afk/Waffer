@@ -1,0 +1,116 @@
+﻿@model SanaaOffersApi.Domain.Entities.User
+@using SanaaOffersApi.Domain.Entities
+@{
+    ViewData["Title"] = "تفاصيل المستخدم: " + Model.FullName;
+}
+
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+    <div>
+        <h3 class="fw-bold text-dark mb-1">تفاصيل حساب المستخدم</h3>
+        <p class="text-muted mb-0">عرض بيانات الحساب الشخصية والمتاجر المسجلة باسمه</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary-custom">
+            <i class="bi bi-pencil"></i> تعديل بيانات الحساب
+        </a>
+        <a asp-action="Index" class="btn btn-light-custom">
+            <i class="bi bi-arrow-right"></i> العودة للقائمة
+        </a>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-5">
+        <div class="main-card">
+            <div class="main-card-header">
+                <h5 class="main-card-title"><i class="bi bi-person-badge text-danger"></i> بطاقة الحساب</h5>
+            </div>
+            <div class="main-card-body">
+                <div class="text-center pb-3 border-bottom mb-3">
+                    <div class="user-avatar mx-auto mb-2" style="width:72px;height:72px;font-size:28px;">
+                        @(Model.FullName.Length > 0 ? Model.FullName.Substring(0, 1) : "م")
+                    </div>
+                    <h4 class="fw-bold text-dark mb-1">@Model.FullName</h4>
+                    <span class="badge @(Model.Role == UserRole.Admin ? "bg-danger" : Model.Role == UserRole.Merchant ? "bg-primary" : "bg-success") px-3 py-1">
+                        @Model.Role
+                    </span>
+                </div>
+
+                <div class="d-flex flex-column gap-3">
+                    <div class="d-flex align-items-center justify-content-between p-2 rounded bg-light">
+                        <span class="text-muted fw-bold"><i class="bi bi-envelope me-1"></i> البريد الإلكتروني:</span>
+                        <span class="text-dark fw-bold">@Model.Email</span>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-between p-2 rounded bg-light">
+                        <span class="text-muted fw-bold"><i class="bi bi-telephone me-1"></i> رقم الهاتف:</span>
+                        <span class="text-dark">@(Model.Phone ?? "غير متوفر")</span>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-between p-2 rounded bg-light">
+                        <span class="text-muted fw-bold"><i class="bi bi-calendar-check me-1"></i> تاريخ إنشاء الحساب:</span>
+                        <span class="text-dark">@Model.CreatedAt.ToString("yyyy/MM/dd")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-7">
+        <div class="main-card">
+            <div class="main-card-header">
+                <h5 class="main-card-title"><i class="bi bi-shop text-danger"></i> المتاجر التابعة لهذا المستخدم (@(Model.Merchants?.Count ?? 0))</h5>
+            </div>
+            <div class="main-card-body p-0">
+                @if (Model.Merchants != null && Model.Merchants.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>اسم المتجر</th>
+                                    <th>الهاتف</th>
+                                    <th>العنوان</th>
+                                    <th>حالة الاعتماد</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var m in Model.Merchants)
+                                {
+                                    <tr>
+                                        <td><span class="fw-bold text-dark">@m.StoreName</span></td>
+                                        <td><span class="text-muted">@(m.Phone ?? "غير متوفر")</span></td>
+                                        <td><span class="text-muted small">@(m.Address ?? "صنعاء")</span></td>
+                                        <td>
+                                            @if (m.IsApproved)
+                                            {
+                                                <span class="badge bg-success">معتمد</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-warning text-dark">قيد المراجعة</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a asp-controller="Merchants" asp-action="Details" asp-route-id="@m.Id" class="btn btn-sm btn-light">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="p-5 text-center text-muted">
+                        <i class="bi bi-shop fs-1 d-block mb-2 text-light"></i>
+                        <p class="mb-0">لا توجد أي متاجر مسجلة باسم هذا الحساب حالياً.</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

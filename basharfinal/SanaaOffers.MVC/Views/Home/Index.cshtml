@@ -1,0 +1,304 @@
+@model SanaaOffers.MVC.ViewModels.HomeViewModel
+@{
+    Layout = "_VisitorLayout";
+    ViewData["Title"] = "الرئيسية - أفضل عروض وتخفيضات صنعاء";
+}
+
+<!-- HERO BANNER SECTION -->
+<section class="py-5" style="background: linear-gradient(135deg, #1A1A1A 0%, #2A1817 60%, #B3241C 100%); color: #FFFFFF;">
+    <div class="container py-4">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-white bg-opacity-10 border border-white border-opacity-20 text-warning mb-3">
+                    <i class="bi bi-stars"></i>
+                    <span class="small fw-bold">المنصة الأولى والأشمل في العاصمة صنعاء</span>
+                </div>
+                <h1 class="display-5 fw-black mb-3" style="line-height: 1.25;">
+                    أهلاً بك في تطبيق ومنصة <span style="color: #FF6B6B;">وفّـر</span> 👋
+                </h1>
+                <p class="lead text-white-50 mb-4" style="font-size: 17px; line-height: 1.7; max-width: 580px;">
+                    استكشف أحدث عروض السوبر ماركت، المولات، والمتاجر في صنعاء يومياً. تسوق بذكاء ووفّر أكثر على مدار الساعة!
+                </p>
+
+                <!-- Modern Search Bar -->
+                <form method="get" asp-action="Index" class="mb-4">
+                    <div class="bg-white p-2 rounded-pill shadow-lg d-flex gap-2" style="max-width: 580px;">
+                        <div class="input-group">
+                            <span class="input-group-text bg-transparent border-0 text-muted ps-3">
+                                <i class="bi bi-search fs-5" style="color: #B3241C;"></i>
+                            </span>
+                            <input type="text" name="search" value="@Model.SearchQuery" 
+                                   class="form-control border-0 shadow-none fs-6" 
+                                   placeholder="ابحث عن منتج، عرض، أو متجر في صنعاء..." />
+                        </div>
+                        <button type="submit" class="btn rounded-pill px-4 fw-bold text-white d-flex align-items-center gap-2"
+                                style="background-color: #B3241C;">
+                            <span>بحث</span>
+                            <i class="bi bi-arrow-left"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Hotline Quick Notice -->
+                <div class="d-flex align-items-center gap-3 text-white-50 small">
+                    <div><i class="bi bi-check-circle-fill text-success me-1"></i> عروض محدثة وموثقة</div>
+                    <div><i class="bi bi-telephone-fill text-warning me-1"></i> للاستفسار والدعم: <a href="tel:779888892" class="text-warning fw-bold text-decoration-none">779888892</a></div>
+                </div>
+            </div>
+
+            <!-- Live Stats Card -->
+            <div class="col-lg-5">
+                <div class="p-4 rounded-4 shadow-lg" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);">
+                    <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-white border-opacity-10">
+                        <span class="fw-bold text-white">إحصائيات المنصة الحية</span>
+                        <span class="badge bg-success rounded-pill px-3 py-1">مباشر</span>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="p-3 rounded-3 text-center" style="background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(255, 255, 255, 0.08);">
+                                <div class="fs-2 fw-black" style="color: #FF7675;">@Model.TotalOffersCount</div>
+                                <div class="small text-white-50">عرض نشط متاح</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-3 rounded-3 text-center" style="background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(255, 255, 255, 0.08);">
+                                <div class="fs-2 fw-black text-warning">@Model.TotalMerchantsCount</div>
+                                <div class="small text-white-50">متجر معتمد</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="p-3 rounded-3 d-flex align-items-center justify-content-between" style="background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(255, 255, 255, 0.08);">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="bg-warning bg-opacity-20 text-warning p-2 rounded-3">
+                                        <i class="bi bi-shop fs-4"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fw-bold text-white small">هل أنت تاجر في صنعاء؟</div>
+                                        <div class="text-white-50" style="font-size: 11.5px;">انضم لشبكة وفر وانشر عروضك</div>
+                                    </div>
+                                </div>
+                                <a href="tel:779888892" class="btn btn-warning btn-sm rounded-pill px-3 fw-bold">
+                                    779888892
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CATEGORIES PILLS FILTER SECTION -->
+<div id="categories-section" class="container my-5">
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+        <h4 class="fw-bold m-0" style="color: #1E1E1E;">
+            <i class="bi bi-grid-fill me-2" style="color: #B3241C;"></i> تصفح حسب الأقسام والتصنيفات
+        </h4>
+        @if (!string.IsNullOrEmpty(Model.SelectedCategory) || !string.IsNullOrEmpty(Model.SearchQuery))
+        {
+            <a asp-action="Index" class="btn btn-sm rounded-pill px-3 fw-bold" style="color: #B3241C; background-color: #FDF2F2;">
+                إلغاء التصفية وعرض الكل
+            </a>
+        }
+    </div>
+
+    <div class="d-flex flex-wrap gap-2">
+        <a asp-action="Index" 
+           class="btn rounded-pill px-4 fw-bold @(string.IsNullOrEmpty(Model.SelectedCategory) ? "text-white shadow-sm" : "bg-white text-secondary border")"
+           style="@(string.IsNullOrEmpty(Model.SelectedCategory) ? "background-color: #B3241C;" : "")">
+            الكل (@Model.TotalOffersCount)
+        </a>
+        @foreach (var cat in Model.Categories)
+        {
+            var isSelected = Model.SelectedCategory == cat.Name;
+            <a asp-action="Index" asp-route-category="@cat.Name" 
+               class="btn rounded-pill px-3 fw-semibold @(isSelected ? "text-white shadow-sm" : "bg-white text-secondary border")"
+               style="@(isSelected ? "background-color: #B3241C;" : "")">
+                @cat.Name
+            </a>
+        }
+    </div>
+</div>
+
+<!-- FLASH SALES SECTION (IF ANY) -->
+@if (Model.FlashSales.Any())
+{
+    <section class="container mb-5">
+        <div class="p-4 rounded-4" style="background: #FFF8F0; border: 1.5px solid #FED7AA;">
+            <div class="d-flex align-items-center gap-2 mb-3">
+                <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold">
+                    <i class="bi bi-lightning-charge-fill"></i> عروض خاطفة
+                </span>
+                <h4 class="fw-black m-0 text-dark">فرص توفير استثنائية تنتهي قريباً ⚡</h4>
+            </div>
+
+            <div class="row g-3">
+                @foreach (var offer in Model.FlashSales)
+                {
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative bg-white">
+                            @if (offer.DiscountPercentage > 0)
+                            {
+                                <div class="position-absolute top-0 start-0 m-3 px-2 py-1 rounded-pill fw-bold text-white small"
+                                     style="background-color: #B3241C; z-index: 2;">
+                                    -%@offer.DiscountPercentage.ToString("0")
+                                </div>
+                            }
+
+                            @if (!string.IsNullOrEmpty(offer.ImageUrl))
+                            {
+                                <img src="@offer.ImageUrl" class="card-img-top" style="height: 180px; object-fit: cover;" alt="@offer.Title" />
+                            }
+                            else
+                            {
+                                <div class="bg-light d-flex align-items-center justify-content-center" style="height: 180px;">
+                                    <i class="bi bi-image text-muted fs-1"></i>
+                                </div>
+                            }
+
+                            <div class="p-3 d-flex flex-column flex-grow-1">
+                                <span class="badge bg-light text-secondary align-self-start mb-2">@(offer.Category?.Name ?? "عام")</span>
+                                <h6 class="fw-bold text-dark mb-1">@offer.Title</h6>
+                                <p class="text-muted small text-truncate mb-3" style="max-height: 40px;">@offer.Description</p>
+
+                                <div class="mt-auto pt-2 border-top d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <div class="fw-bold fs-5" style="color: #B3241C;">@offer.DiscountedPrice.ToString("N0") <small class="fs-6">ر.ي</small></div>
+                                        @if (offer.OriginalPrice > offer.DiscountedPrice)
+                                        {
+                                            <div class="text-muted text-decoration-line-through small">@offer.OriginalPrice.ToString("N0") ر.ي</div>
+                                        }
+                                    </div>
+                                    <span class="badge bg-light text-secondary border small">
+                                        <i class="bi bi-shop me-1"></i>@(offer.Merchant?.StoreName ?? "متجر")
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+<!-- MAIN OFFERS GRID -->
+<section id="offers-section" class="container mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h4 class="fw-bold text-dark m-0">
+                <i class="bi bi-tags-fill me-2" style="color: #B3241C;"></i> كافة العروض والتخفيضات النشطة
+            </h4>
+            <small class="text-muted">استعرض أحدث العروض المتاحة الآن في العاصمة صنعاء</small>
+        </div>
+        <span class="badge px-3 py-2 rounded-pill fw-bold" style="background-color: #FDF2F2; color: #B3241C;">
+            @Model.AllOffers.Count عرض متوفر
+        </span>
+    </div>
+
+    @if (!Model.AllOffers.Any())
+    {
+        <div class="text-center py-5 bg-white rounded-4 shadow-sm">
+            <i class="bi bi-inbox text-muted" style="font-size: 50px;"></i>
+            <h5 class="fw-bold text-dark mt-3">لا توجد عروض مطابقة حالياً</h5>
+            <p class="text-muted small">يرجى البحث بكلمات أخرى أو تصفح كافة الأقسام.</p>
+            <a asp-action="Index" class="btn btn-sm rounded-pill px-4 text-white" style="background-color: #B3241C;">
+                عرض كافة العروض
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var offer in Model.AllOffers)
+            {
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative bg-white"
+                         style="transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                        @if (offer.DiscountPercentage > 0)
+                        {
+                            <div class="position-absolute top-0 start-0 m-3 px-2 py-1 rounded-pill fw-bold text-white small"
+                                 style="background-color: #B3241C; z-index: 2; font-size: 11px;">
+                                -%@offer.DiscountPercentage.ToString("0")
+                            </div>
+                        }
+                        @if (offer.IsFlashSale)
+                        {
+                            <div class="position-absolute top-0 end-0 m-3 px-2 py-1 rounded-pill fw-bold text-dark small"
+                                 style="background-color: #F59E0B; z-index: 2; font-size: 11px;">
+                                <i class="bi bi-lightning-fill"></i> خاطف
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(offer.ImageUrl))
+                        {
+                            <img src="@offer.ImageUrl" class="card-img-top" style="height: 180px; object-fit: cover;" alt="@offer.Title" />
+                        }
+                        else
+                        {
+                            <div class="bg-light d-flex align-items-center justify-content-center" style="height: 180px;">
+                                <i class="bi bi-image text-muted fs-1"></i>
+                            </div>
+                        }
+
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-light text-secondary align-self-start mb-2">@(offer.Category?.Name ?? "عام")</span>
+                            <h6 class="fw-bold text-dark mb-1 text-truncate">@offer.Title</h6>
+                            <p class="text-muted small text-truncate mb-3" style="font-size: 12.5px;">@offer.Description</p>
+
+                            <div class="mt-auto pt-2 border-top">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <div class="fw-bold fs-5" style="color: #B3241C;">@offer.DiscountedPrice.ToString("N0") <small class="fs-6">ر.ي</small></div>
+                                        @if (offer.OriginalPrice > offer.DiscountedPrice)
+                                        {
+                                            <div class="text-muted text-decoration-line-through small" style="font-size: 11px;">@offer.OriginalPrice.ToString("N0") ر.ي</div>
+                                        }
+                                    </div>
+                                    <div class="text-end">
+                                        <span class="badge rounded-pill small" style="background-color: #FDF2F2; color: #B3241C; border: 1px solid #FECACA;">
+                                            <i class="bi bi-shop me-1"></i>@(offer.Merchant?.StoreName ?? "متجر")
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</section>
+
+<!-- APPROVED MERCHANTS SECTION -->
+@if (Model.Merchants.Any())
+{
+    <section id="merchants-section" class="container mb-5">
+        <div class="mb-4">
+            <h4 class="fw-bold text-dark m-0">
+                <i class="bi bi-shop-window me-2" style="color: #B3241C;"></i> المتاجر والشركاء المعتمدون في صنعاء
+            </h4>
+            <small class="text-muted">نخبة من كبرى المحلات والمولات والمتاجر الموثقة في المنصة</small>
+        </div>
+
+        <div class="row g-3">
+            @foreach (var merchant in Model.Merchants)
+            {
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="bg-white p-3 rounded-4 shadow-sm border border-light d-flex align-items-center gap-3">
+                        <div class="rounded-3 p-2 d-flex align-items-center justify-content-center"
+                             style="width: 48px; height: 48px; background-color: #FDF2F2; color: #B3241C;">
+                            <i class="bi bi-shop fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold m-0 text-dark">@merchant.StoreName</h6>
+                            <small class="text-muted"><i class="bi bi-geo-alt me-1"></i>@(string.IsNullOrEmpty(merchant.Address) ? "صنعاء" : merchant.Address)</small>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+}

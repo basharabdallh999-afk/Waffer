@@ -1,0 +1,54 @@
+﻿@model SanaaOffersApi.Domain.Entities.Category
+@{
+    ViewData["Title"] = "حذف التصنيف: " + Model.Name;
+}
+
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+    <div>
+        <h3 class="fw-bold text-dark mb-1 text-danger"><i class="bi bi-exclamation-octagon-fill me-2"></i> تأكيد حذف التصنيف</h3>
+        <p class="text-muted mb-0">يرجى مراجعة تفاصيل التصنيف قبل اتخاذ القرار النهائي بالحذف</p>
+    </div>
+    <div>
+        <a asp-action="Index" class="btn btn-light-custom">
+            <i class="bi bi-arrow-right"></i> العودة للقائمة
+        </a>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="main-card border-danger border-2">
+            <div class="main-card-body p-4 text-center">
+                <div class="delete-icon-pulse mb-3">
+                    <i class="bi bi-trash3-fill"></i>
+                </div>
+                <h4 class="fw-bold text-dark mb-2">هل أنت متأكد من رغبتك في حذف هذا التصنيف؟</h4>
+                <p class="text-muted mb-4">سيتم حذف التصنيف التالي بشكل نهائي من قاعدة البيانات:</p>
+
+                <div class="p-3 bg-light rounded-3 text-start mb-4">
+                    <div class="mb-2"><strong>اسم التصنيف:</strong> @Model.Name</div>
+                    <div class="mb-2"><strong>الوصف:</strong> @(Model.Description ?? "لا يوجد")</div>
+                    <div><strong>عدد العروض المرتبطة:</strong> @(Model.Offers?.Count ?? 0) عرض</div>
+                </div>
+
+                @if (Model.Offers != null && Model.Offers.Any())
+                {
+                    <div class="alert alert-warning text-start mb-4">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                        تنبيه: يحتوي هذا التصنيف على @Model.Offers.Count عروض مرتبطة. يجب نقل أو حذف العروض أولاً.
+                    </div>
+                }
+
+                <form method="post" asp-action="Delete" asp-route-id="@Model.Id">
+                    @Html.AntiForgeryToken()
+                    <div class="d-flex gap-3 justify-content-center">
+                        <a asp-action="Index" class="btn btn-light px-4 fw-bold">إلغاء</a>
+                        <button type="submit" class="btn btn-danger px-4 fw-bold" @(Model.Offers != null && Model.Offers.Any() ? "disabled" : "")>
+                            <i class="bi bi-trash3-fill me-1"></i> تأكيد الحذف النهائي
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

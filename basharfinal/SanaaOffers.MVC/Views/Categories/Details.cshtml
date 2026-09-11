@@ -1,0 +1,96 @@
+﻿@model SanaaOffersApi.Domain.Entities.Category
+@{
+    ViewData["Title"] = "تفاصيل التصنيف: " + Model.Name;
+}
+
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+    <div>
+        <h3 class="fw-bold text-dark mb-1">تفاصيل التصنيف</h3>
+        <p class="text-muted mb-0">عرض معلومات التصنيف والعروض المندرجة تحته</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary-custom">
+            <i class="bi bi-pencil"></i> تعديل التصنيف
+        </a>
+        <a asp-action="Index" class="btn btn-light-custom">
+            <i class="bi bi-arrow-right"></i> العودة للقائمة
+        </a>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-4">
+        <div class="main-card p-4 text-center">
+            <div class="stat-icon red mx-auto mb-3" style="width:72px;height:72px;font-size:36px;">
+                <i class="bi @(string.IsNullOrEmpty(Model.Icon) ? "bi-tag" : Model.Icon)"></i>
+            </div>
+            <h4 class="fw-bold text-dark mb-2">@Model.Name</h4>
+            <p class="text-muted mb-3">@(Model.Description ?? "لا يوجد وصف إضافي متوفر لهذا التصنيف.")</p>
+            <div class="p-3 bg-light rounded-3 d-flex justify-content-between align-items-center">
+                <span class="text-muted fw-bold">إجمالي العروض:</span>
+                <span class="badge bg-danger fs-6">@(Model.Offers?.Count ?? 0) عرض</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-8">
+        <div class="main-card">
+            <div class="main-card-header">
+                <h5 class="main-card-title"><i class="bi bi-tags text-danger"></i> العروض المرتبطة بهذا التصنيف</h5>
+            </div>
+            <div class="main-card-body">
+                @if (Model.Offers != null && Model.Offers.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>العرض</th>
+                                    <th>السعر الأصلي</th>
+                                    <th>سعر الخصم</th>
+                                    <th>الحالة</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var offer in Model.Offers)
+                                {
+                                    <tr>
+                                        <td>
+                                            <span class="fw-bold text-dark d-block">@offer.Title</span>
+                                            <small class="text-muted">ينتهي: @offer.EndDate.ToString("yyyy/MM/dd")</small>
+                                        </td>
+                                        <td><span class="text-decoration-line-through text-muted">@offer.OriginalPrice.ToString("N0") ر.ي</span></td>
+                                        <td><span class="text-danger fw-bold">@offer.DiscountedPrice.ToString("N0") ر.ي</span></td>
+                                        <td>
+                                            @if (offer.IsExpired)
+                                            {
+                                                <span class="badge bg-secondary">منتهي</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-success">نشط</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a asp-controller="Offers" asp-action="Details" asp-route-id="@offer.Id" class="btn btn-sm btn-light">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-4 text-muted">
+                        <i class="bi bi-inbox fs-1 d-block mb-2 text-light"></i>
+                        <p class="mb-0">لا توجد عروض منشورة في هذا التصنيف حالياً.</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+﻿@model SanaaOffers.MVC.ViewModels.CategoryFormViewModel
+@{
+    ViewData["Title"] = "تعديل التصنيف: " + Model.Name;
+}
+
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+    <div>
+        <h3 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i> تعديل بيانات التصنيف</h3>
+        <p class="text-muted mb-0">تحديث الاسم أو الوصف أو الأيقونة</p>
+    </div>
+    <div>
+        <a asp-action="Index" class="btn btn-light-custom">
+            <i class="bi bi-arrow-right"></i> العودة للقائمة
+        </a>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="main-card">
+            <div class="main-card-header">
+                <h5 class="main-card-title"><i class="bi bi-grid text-danger"></i> نموذج تعديل التصنيف</h5>
+            </div>
+            <div class="main-card-body p-4">
+                <form method="post" asp-action="Edit" asp-route-id="@Model.Id">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label fw-bold text-dark"></label> <span class="text-danger">*</span>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label fw-bold text-dark"></label>
+                        <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Description" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Icon" class="form-label fw-bold text-dark"></label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="bi bi-palette"></i></span>
+                            <input asp-for="Icon" class="form-control" />
+                        </div>
+                        <small class="text-muted d-block mt-1">كلاس الأيقونة من Bootstrap Icons (مثال: bi-cart4)</small>
+                        <span asp-validation-for="Icon" class="text-danger small"></span>
+                    </div>
+
+                    <div class="d-flex gap-2 justify-content-end border-top pt-3">
+                        <a asp-action="Index" class="btn btn-light px-4 fw-bold">إلغاء</a>
+                        <button type="submit" class="btn btn-primary-custom px-4">
+                            <i class="bi bi-save"></i> حفظ التعديلات
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

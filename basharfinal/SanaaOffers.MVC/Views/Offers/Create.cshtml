@@ -1,0 +1,143 @@
+@model SanaaOffers.MVC.ViewModels.OfferFormViewModel
+@{
+    ViewData["Title"] = "إضافة عرض ترويجي جديد";
+}
+
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+    <div>
+        <h3 class="fw-bold text-dark mb-1"><i class="bi bi-plus-circle-fill text-danger me-2"></i> نشر عرض جديد</h3>
+        <p class="text-muted mb-0">أدخل تفاصيل العرض، الأسعار، التواريخ، وارفع صورة العرض الترويجية</p>
+    </div>
+    <div>
+        <a asp-action="Index" class="btn btn-light-custom">
+            <i class="bi bi-arrow-right"></i> العودة للقائمة
+        </a>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-9">
+        <div class="main-card">
+            <div class="main-card-header">
+                <h5 class="main-card-title"><i class="bi bi-tags text-danger"></i> بيانات العرض والتخفيض</h5>
+            </div>
+            <div class="main-card-body p-4">
+                <form method="post" asp-action="Create" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label asp-for="Title" class="form-label fw-bold text-dark"></label> <span class="text-danger">*</span>
+                            <input asp-for="Title" class="form-control" placeholder="مثال: خصم 30% على الأجهزة الكهربائية والشاشات" />
+                            <span asp-validation-for="Title" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="MerchantId" class="form-label fw-bold text-dark"></label> <span class="text-danger">*</span>
+                            <select asp-for="MerchantId" asp-items="Model.MerchantList" class="form-select">
+                                <option value="">-- اختر المتجر الناشر للعرض --</option>
+                            </select>
+                            <span asp-validation-for="MerchantId" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="CategoryId" class="form-label fw-bold text-dark"></label> <span class="text-danger">*</span>
+                            <select asp-for="CategoryId" asp-items="Model.CategoryList" class="form-select">
+                                <option value="">-- اختر تصنيف العرض --</option>
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="OriginalPrice" class="form-label fw-bold text-dark"></label> <span class="text-danger">*</span>
+                            <div class="input-group">
+                                <input asp-for="OriginalPrice" class="form-control" type="number" step="1" placeholder="مثال: 50000" />
+                                <span class="input-group-text">ريال يمني</span>
+                            </div>
+                            <span asp-validation-for="OriginalPrice" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="DiscountedPrice" class="form-label fw-bold text-dark"></label> <span class="text-danger">*</span>
+                            <div class="input-group">
+                                <input asp-for="DiscountedPrice" class="form-control" type="number" step="1" placeholder="مثال: 35000" />
+                                <span class="input-group-text">ريال يمني</span>
+                            </div>
+                            <span asp-validation-for="DiscountedPrice" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="StartDate" class="form-label fw-bold text-dark"></label> <span class="text-danger">*</span>
+                            <input asp-for="StartDate" class="form-control" type="date" />
+                            <span asp-validation-for="StartDate" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="EndDate" class="form-label fw-bold text-dark"></label> <span class="text-danger">*</span>
+                            <input asp-for="EndDate" class="form-control" type="date" />
+                            <span asp-validation-for="EndDate" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label asp-for="Description" class="form-label fw-bold text-dark"></label>
+                            <textarea asp-for="Description" class="form-control" rows="3" placeholder="تفاصيل العرض، الشروط، المواصفات والضمان إن وجد..."></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label asp-for="Image" class="form-label fw-bold text-dark"></label>
+                            <input asp-for="Image" class="form-control" type="file" accept="image/*" />
+                            <small class="text-muted">الامتدادات المدعومة: JPG, PNG, WEBP (الحد الأقصى 5 ميجابايت)</small>
+                            <span asp-validation-for="Image" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch p-3 bg-light rounded-3">
+                                        <input class="form-check-input" type="checkbox" asp-for="IsFlashSale" id="flashSaleSwitch">
+                                        <label class="form-check-label fw-bold text-danger" for="flashSaleSwitch">
+                                            <i class="bi bi-lightning-charge-fill me-1"></i> تمييز هذا العرض كـ "عرض خاطف" (Flash Sale)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch p-3 bg-warning-subtle rounded-3 border border-warning">
+                                        <input class="form-check-input" type="checkbox" asp-for="IsSponsored" id="sponsoredSwitch">
+                                        <label class="form-check-label fw-bold text-dark" for="sponsoredSwitch">
+                                            <i class="bi bi-star-fill text-warning me-1"></i> إعلان بنر مميز مدفوع (يتحرك كل 3 ثوانٍ بالتطبيق)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="DisplayPriority" class="form-label fw-bold text-dark"></label>
+                                    <input asp-for="DisplayPriority" class="form-control" type="number" min="0" max="1000" placeholder="0 = افتراضي، الأرقام الأعلى تظهر أولاً" />
+                                    <small class="text-muted">أولوية الظهور في شريط البنرات المتحركة للتطبيق</small>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch p-3 bg-light rounded-3 mt-3">
+                                        <input class="form-check-input" type="checkbox" asp-for="IsActive" id="activeSwitch" checked>
+                                        <label class="form-check-label fw-bold text-success" for="activeSwitch">
+                                            <i class="bi bi-check-circle-fill me-1"></i> العرض نشط ومتاح للمستخدمين
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2 justify-content-end border-top pt-4 mt-4">
+                        <a asp-action="Index" class="btn btn-light px-4 fw-bold">إلغاء</a>
+                        <button type="submit" class="btn btn-primary-custom px-4">
+                            <i class="bi bi-check2-circle"></i> نشر وحفظ العرض
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

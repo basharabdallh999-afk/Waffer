@@ -1,0 +1,47 @@
+﻿@model SanaaOffersApi.Domain.Entities.Merchant
+@{
+    ViewData["Title"] = "حذف المتجر: " + Model.StoreName;
+}
+
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+    <div>
+        <h3 class="fw-bold text-dark mb-1 text-danger"><i class="bi bi-exclamation-octagon-fill me-2"></i> تأكيد حذف المتجر</h3>
+        <p class="text-muted mb-0">تحذير: سيؤدي حذف المتجر إلى حذف جميع العروض التابعة له تلقائياً</p>
+    </div>
+    <div>
+        <a asp-action="Index" class="btn btn-light-custom">
+            <i class="bi bi-arrow-right"></i> العودة للقائمة
+        </a>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="main-card border-danger border-2">
+            <div class="main-card-body p-4 text-center">
+                <div class="delete-icon-pulse mb-3">
+                    <i class="bi bi-trash3-fill"></i>
+                </div>
+                <h4 class="fw-bold text-dark mb-2">هل أنت متأكد من حذف المتجر "@Model.StoreName"؟</h4>
+                <p class="text-muted mb-4">يرجى مراجعة تفاصيل المتجر قبل التأكيد:</p>
+
+                <div class="p-3 bg-light rounded-3 text-start mb-4">
+                    <div class="mb-2"><strong>اسم المتجر:</strong> @Model.StoreName</div>
+                    <div class="mb-2"><strong>المالك:</strong> @(Model.User?.FullName ?? "غير محدد")</div>
+                    <div class="mb-2"><strong>العنوان:</strong> @(Model.Address ?? "غير محدد")</div>
+                    <div><strong>عدد العروض التي ستُحذف:</strong> <span class="text-danger fw-bold">@(Model.Offers?.Count ?? 0) عرض</span></div>
+                </div>
+
+                <form method="post" asp-action="Delete" asp-route-id="@Model.Id">
+                    @Html.AntiForgeryToken()
+                    <div class="d-flex gap-3 justify-content-center">
+                        <a asp-action="Index" class="btn btn-light px-4 fw-bold">إلغاء</a>
+                        <button type="submit" class="btn btn-danger px-4 fw-bold">
+                            <i class="bi bi-trash3-fill me-1"></i> تأكيد الحذف النهائي
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

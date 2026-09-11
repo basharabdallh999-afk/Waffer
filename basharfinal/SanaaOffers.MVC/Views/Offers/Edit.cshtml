@@ -1,0 +1,152 @@
+@model SanaaOffers.MVC.ViewModels.OfferFormViewModel
+@{
+    ViewData["Title"] = "تعديل العرض: " + Model.Title;
+}
+
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+    <div>
+        <h3 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i> تعديل بيانات العرض</h3>
+        <p class="text-muted mb-0">تحديث تفاصيل العرض، السعر، التواريخ، أو استبدال الصورة</p>
+    </div>
+    <div>
+        <a asp-action="Index" class="btn btn-light-custom">
+            <i class="bi bi-arrow-right"></i> العودة للقائمة
+        </a>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-9">
+        <div class="main-card">
+            <div class="main-card-header">
+                <h5 class="main-card-title"><i class="bi bi-tags text-danger"></i> نموذج تعديل العرض</h5>
+            </div>
+            <div class="main-card-body p-4">
+                <form method="post" asp-action="Edit" asp-route-id="@Model.Id" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="ExistingImageUrl" />
+
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label asp-for="Title" class="form-label fw-bold text-dark"></label> <span class="text-danger">*</span>
+                            <input asp-for="Title" class="form-control" />
+                            <span asp-validation-for="Title" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="MerchantId" class="form-label fw-bold text-dark"></label> <span class="text-danger">*</span>
+                            <select asp-for="MerchantId" asp-items="Model.MerchantList" class="form-select"></select>
+                            <span asp-validation-for="MerchantId" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="CategoryId" class="form-label fw-bold text-dark"></label> <span class="text-danger">*</span>
+                            <select asp-for="CategoryId" asp-items="Model.CategoryList" class="form-select"></select>
+                            <span asp-validation-for="CategoryId" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="OriginalPrice" class="form-label fw-bold text-dark"></label> <span class="text-danger">*</span>
+                            <div class="input-group">
+                                <input asp-for="OriginalPrice" class="form-control" type="number" step="1" />
+                                <span class="input-group-text">ريال يمني</span>
+                            </div>
+                            <span asp-validation-for="OriginalPrice" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="DiscountedPrice" class="form-label fw-bold text-dark"></label> <span class="text-danger">*</span>
+                            <div class="input-group">
+                                <input asp-for="DiscountedPrice" class="form-control" type="number" step="1" />
+                                <span class="input-group-text">ريال يمني</span>
+                            </div>
+                            <span asp-validation-for="DiscountedPrice" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="StartDate" class="form-label fw-bold text-dark"></label> <span class="text-danger">*</span>
+                            <input asp-for="StartDate" class="form-control" type="date" />
+                            <span asp-validation-for="StartDate" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="EndDate" class="form-label fw-bold text-dark"></label> <span class="text-danger">*</span>
+                            <input asp-for="EndDate" class="form-control" type="date" />
+                            <span asp-validation-for="EndDate" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label asp-for="Description" class="form-label fw-bold text-dark"></label>
+                            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Current Image & Upload New -->
+                        <div class="col-md-12">
+                            @if (!string.IsNullOrEmpty(Model.ExistingImageUrl))
+                            {
+                                <div class="mb-3 p-3 bg-light rounded-3 d-flex align-items-center gap-3">
+                                    <img src="~/@Model.ExistingImageUrl" alt="Current Image" class="rounded-2 border" style="width:70px;height:70px;object-fit:cover;" />
+                                    <div>
+                                        <h6 class="fw-bold mb-1">الصورة الحالية للعرض</h6>
+                                        <small class="text-muted">إذا كنت لا تريد تغيير الصورة الحالية، اترك حقل الصورة أدناه فارغاً.</small>
+                                    </div>
+                                </div>
+                            }
+
+                            <label asp-for="Image" class="form-label fw-bold text-dark">رفع صورة جديدة للعرض (اختياري)</label>
+                            <input asp-for="Image" class="form-control" type="file" accept="image/*" />
+                            <span asp-validation-for="Image" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch p-3 bg-light rounded-3">
+                                        <input class="form-check-input" type="checkbox" asp-for="IsFlashSale" id="flashSaleSwitchEdit">
+                                        <label class="form-check-label fw-bold text-danger" for="flashSaleSwitchEdit">
+                                            <i class="bi bi-lightning-charge-fill me-1"></i> تمييز هذا العرض كـ "عرض خاطف" (Flash Sale)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch p-3 bg-warning-subtle rounded-3 border border-warning">
+                                        <input class="form-check-input" type="checkbox" asp-for="IsSponsored" id="sponsoredSwitchEdit">
+                                        <label class="form-check-label fw-bold text-dark" for="sponsoredSwitchEdit">
+                                            <i class="bi bi-star-fill text-warning me-1"></i> إعلان بنر مميز مدفوع (يتحرك كل 3 ثوانٍ بالتطبيق)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="DisplayPriority" class="form-label fw-bold text-dark"></label>
+                                    <input asp-for="DisplayPriority" class="form-control" type="number" min="0" max="1000" placeholder="0 = افتراضي، الأرقام الأعلى تظهر أولاً" />
+                                    <small class="text-muted">أولوية الظهور في شريط البنرات المتحركة للتطبيق</small>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch p-3 bg-light rounded-3 mt-3">
+                                        <input class="form-check-input" type="checkbox" asp-for="IsActive" id="activeSwitchEdit">
+                                        <label class="form-check-label fw-bold text-success" for="activeSwitchEdit">
+                                            <i class="bi bi-check-circle-fill me-1"></i> العرض نشط ومتاح للمستخدمين
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2 justify-content-end border-top pt-4 mt-4">
+                        <a asp-action="Index" class="btn btn-light px-4 fw-bold">إلغاء</a>
+                        <button type="submit" class="btn btn-primary-custom px-4">
+                            <i class="bi bi-save"></i> حفظ التعديلات
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
