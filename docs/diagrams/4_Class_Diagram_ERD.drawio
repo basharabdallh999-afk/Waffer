@@ -1,74 +1,53 @@
-<mxfile host="app.diagrams.net" modified="2026-09-11T13:00:00.000Z" agent="Antigravity" version="21.0.0" type="device">
-  <diagram id="Class_ERD_V2" name="Class Diagram and ERD">
-    <mxGraphModel dx="1250" dy="850" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1250" pageHeight="950" background="#FFFFFF" math="0" shadow="1">
+<mxfile host="app.diagrams.net" modified="2026-09-11T13:30:00.000Z" agent="Antigravity" version="21.0.0" type="device">
+  <diagram id="Standard_Class_ERD" name="UML Class &amp; ERD Diagram">
+    <mxGraphModel dx="1200" dy="850" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="950" background="#FFFFFF" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
 
         <!-- Title -->
-        <mxCell id="erd_header" value="&lt;b style=&quot;font-size: 19px;&quot;&gt;مخطط الأصناف وقاعدة البيانات الشامل لمنصة وَفِّر (Class Diagram &amp;amp; ERD Model)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;Entity Framework Core 10 Schema: Keys, Attributes, Cardinalities &amp;amp; Business Methods&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fillColor=#0F172A;fontColor=#FFFFFF;strokeColor=#1E293B;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="175" y="20" width="900" height="55" as="geometry" />
+        <mxCell id="cls_title" value="&lt;b style=&quot;font-size: 20px;&quot;&gt;مخطط الأصناف وقاعدة البيانات القياسي لمنصة وَفِّر (UML Class Diagram &amp;amp; ERD)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 13px; color: #475569;&quot;&gt;Domain Entities, Attributes, Data Types, Multiplicities &amp;amp; Business Methods&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fillColor=#F8FAFC;fontColor=#0F172A;strokeColor=#CBD5E1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="20" width="800" height="50" as="geometry" />
         </mxCell>
 
-        <!-- 1. USERS TABLE / CLASS (Top Left) -->
-        <mxCell id="c_users" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;Users (المستخدمون والتحقق)&lt;/b&gt;&#xa;-----------------------------------------------------&#xa;+ &lt;b&gt;Id&lt;/b&gt;: int [PK, AutoIncrement]&#xa;+ &lt;b&gt;FullName&lt;/b&gt;: nvarchar(100) [Required]&#xa;+ &lt;b&gt;Email&lt;/b&gt;: nvarchar(150) [Required, Unique]&#xa;+ &lt;b&gt;PasswordHash&lt;/b&gt;: nvarchar(255) [Required]&#xa;+ &lt;b&gt;PhoneNumber&lt;/b&gt;: nvarchar(20)&#xa;+ &lt;b&gt;Role&lt;/b&gt;: nvarchar(30) (&quot;Admin&quot;,&quot;Merchant&quot;,&quot;User&quot;)&#xa;+ &lt;b&gt;CreatedAt&lt;/b&gt;: datetime = DateTime.UtcNow&#xa;-----------------------------------------------------&#xa;+ Register(dto: RegisterDto): AuthResult&#xa;+ Authenticate(password: string): bool&#xa;+ UpdateProfile(name, phone): void" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#3B82F6;fontColor=#1E40AF;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="50" y="110" width="310" height="260" as="geometry" />
+        <!-- 1. CLASS: USER (Top Left) -->
+        <mxCell id="c_user" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;User (المستخدم)&lt;/b&gt;&#xa;---------------------------------------------------------&#xa;+ Id: int [PK]&#xa;+ FullName: string&#xa;+ Email: string [Unique]&#xa;+ PasswordHash: string&#xa;+ Phone: string?&#xa;+ Role: UserRole (Consumer / Merchant / Admin)&#xa;+ IsActive: bool = true&#xa;+ CreatedAt: DateTime&#xa;---------------------------------------------------------&#xa;+ Register(fullName, email, password): bool&#xa;+ Authenticate(password): bool&#xa;+ UpdateProfile(fullName, phone): void" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;fontColor=#1E40AF;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="60" y="100" width="320" height="240" as="geometry" />
         </mxCell>
 
-        <!-- 2. STORES TABLE / CLASS (Top Center) -->
-        <mxCell id="c_stores" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;Stores / Merchants (المتاجر)&lt;/b&gt;&#xa;-----------------------------------------------------&#xa;+ &lt;b&gt;Id&lt;/b&gt;: int [PK, AutoIncrement]&#xa;+ &lt;b&gt;Name&lt;/b&gt;: nvarchar(150) [Required]&#xa;+ &lt;b&gt;Description&lt;/b&gt;: nvarchar(500)&#xa;+ &lt;b&gt;LogoUrl&lt;/b&gt;: nvarchar(300)&#xa;+ &lt;b&gt;IsApproved&lt;/b&gt;: bool = false [اعتماد المتجر]&#xa;+ &lt;b&gt;IsSuspended&lt;/b&gt;: bool = false [إيقاف النشر]&#xa;+ &lt;b&gt;SuspendedUntil&lt;/b&gt;: datetime? [تاريخ الإيقاف]&#xa;+ &lt;b&gt;SuspensionReason&lt;/b&gt;: nvarchar(300) [سبب الإيقاف]&#xa;+ &lt;b&gt;OwnerId&lt;/b&gt;: int [FK -&gt; Users.Id, Required]&#xa;+ &lt;b&gt;CreatedAt&lt;/b&gt;: datetime = DateTime.UtcNow&#xa;-----------------------------------------------------&#xa;+ Approve(): void&#xa;+ Suspend(days: int, reason: string): void&#xa;+ Reactivate(): void&#xa;+ IsActiveForPublishing(): bool" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#10B981;fontColor=#065F46;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="460" y="110" width="330" height="300" as="geometry" />
+        <!-- 2. CLASS: CATEGORY (Top Right) -->
+        <mxCell id="c_category" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;Category (القسم التجاري)&lt;/b&gt;&#xa;---------------------------------------------------------&#xa;+ Id: int [PK]&#xa;+ Name: string [Required]&#xa;+ Description: string?&#xa;+ Icon: string? = &quot;bi-tag&quot;&#xa;---------------------------------------------------------&#xa;+ GetActiveOffers(): List&lt;Offer&gt;&#xa;+ GetOffersCount(): int" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontColor=#92400E;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="820" y="100" width="310" height="170" as="geometry" />
         </mxCell>
 
-        <!-- 3. BRANCHES TABLE / CLASS (Top Right) -->
-        <mxCell id="c_branches" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;Branches (فروع المتجر)&lt;/b&gt;&#xa;-----------------------------------------------------&#xa;+ &lt;b&gt;Id&lt;/b&gt;: int [PK, AutoIncrement]&#xa;+ &lt;b&gt;StoreId&lt;/b&gt;: int [FK -&gt; Stores.Id, Required]&#xa;+ &lt;b&gt;City&lt;/b&gt;: nvarchar(80) [Required]&#xa;+ &lt;b&gt;Address&lt;/b&gt;: nvarchar(250) [Required]&#xa;+ &lt;b&gt;Phone&lt;/b&gt;: nvarchar(30)&#xa;+ &lt;b&gt;CreatedAt&lt;/b&gt;: datetime = DateTime.UtcNow&#xa;-----------------------------------------------------&#xa;+ GetFullLocation(): string" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#F1F5F9;strokeColor=#64748B;fontColor=#334155;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="890" y="110" width="300" height="190" as="geometry" />
+        <!-- 3. CLASS: MERCHANT (Center) -->
+        <mxCell id="c_merchant" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;Merchant / Store (المتجر)&lt;/b&gt;&#xa;---------------------------------------------------------&#xa;+ Id: int [PK]&#xa;+ StoreName: string [Required]&#xa;+ Phone: string?&#xa;+ Address: string?&#xa;+ Latitude: double?&#xa;+ Longitude: double?&#xa;+ IsApproved: bool = false&#xa;+ IsSuspended: bool = false&#xa;+ SuspensionReason: string?&#xa;+ SuspendedUntil: DateTime?&#xa;+ CreatedAt: DateTime&#xa;+ UserId: int [FK -&gt; User.Id]&#xa;---------------------------------------------------------&#xa;+ Approve(): void&#xa;+ Suspend(days: int, reason: string): void&#xa;+ Reactivate(): void&#xa;+ CanPublishOffers(): bool&#xa;+ IsCurrentlySuspended(): bool" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;fontColor=#065F46;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="430" y="210" width="340" height="320" as="geometry" />
         </mxCell>
 
-        <!-- 4. FAVORITES TABLE / CLASS (Bottom Left) -->
-        <mxCell id="c_favorites" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;Favorites (قوائم المفضلة)&lt;/b&gt;&#xa;-----------------------------------------------------&#xa;+ &lt;b&gt;Id&lt;/b&gt;: int [PK, AutoIncrement]&#xa;+ &lt;b&gt;UserId&lt;/b&gt;: int [FK -&gt; Users.Id, Required]&#xa;+ &lt;b&gt;OfferId&lt;/b&gt;: int [FK -&gt; Offers.Id, Required]&#xa;+ &lt;b&gt;AddedAt&lt;/b&gt;: datetime = DateTime.UtcNow&#xa;-----------------------------------------------------&#xa;+ ToggleFavorite(userId, offerId): bool" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#FDF4FF;strokeColor=#C084FC;fontColor=#6B21A8;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="50" y="520" width="310" height="170" as="geometry" />
+        <!-- 4. CLASS: OFFER (Bottom Center) -->
+        <mxCell id="c_offer" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;Offer (العرض التجاري)&lt;/b&gt;&#xa;---------------------------------------------------------&#xa;+ Id: int [PK]&#xa;+ Title: string [Required]&#xa;+ Description: string?&#xa;+ OriginalPrice: decimal&#xa;+ DiscountedPrice: decimal&#xa;+ ImageUrl: string? [مسار صورة العرض]&#xa;+ StartDate: DateTime&#xa;+ EndDate: DateTime&#xa;+ IsFlashSale: bool = false&#xa;+ IsSponsored: bool = false [إعلان مميز]&#xa;+ DisplayPriority: int = 0 [أولوية البنر]&#xa;+ IsActive: bool = true&#xa;+ ViewsCount: int = 0&#xa;+ CreatedAt: DateTime&#xa;+ MerchantId: int [FK -&gt; Merchant.Id]&#xa;+ CategoryId: int [FK -&gt; Category.Id]&#xa;---------------------------------------------------------&#xa;+ CalculateDiscountPercentage(): double&#xa;+ IsExpired(): bool&#xa;+ SetSponsoredBanner(priority: int): void&#xa;+ IncrementViews(): void" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="430" y="580" width="340" height="360" as="geometry" />
         </mxCell>
 
-        <!-- 5. OFFERS TABLE / CLASS (Bottom Center) -->
-        <mxCell id="c_offers" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;Offers (العروض والتخفيضات)&lt;/b&gt;&#xa;-----------------------------------------------------&#xa;+ &lt;b&gt;Id&lt;/b&gt;: int [PK, AutoIncrement]&#xa;+ &lt;b&gt;Title&lt;/b&gt;: nvarchar(200) [Required]&#xa;+ &lt;b&gt;Description&lt;/b&gt;: nvarchar(1000)&#xa;+ &lt;b&gt;OriginalPrice&lt;/b&gt;: decimal(18,2) [Required]&#xa;+ &lt;b&gt;DiscountedPrice&lt;/b&gt;: decimal(18,2) [Required]&#xa;+ &lt;b&gt;DiscountPercentage&lt;/b&gt;: double [نسبة التوفير]&#xa;+ &lt;b&gt;ImageUrl&lt;/b&gt;: nvarchar(400) [صورة العرض]&#xa;+ &lt;b&gt;StartDate&lt;/b&gt;: datetime [تاريخ البدء]&#xa;+ &lt;b&gt;EndDate&lt;/b&gt;: datetime [تاريخ الانتهاء]&#xa;+ &lt;b&gt;IsSponsored&lt;/b&gt;: bool = false [إعلان مميز]&#xa;+ &lt;b&gt;DisplayPriority&lt;/b&gt;: int = 0 [أولوية البنر]&#xa;+ &lt;b&gt;StoreId&lt;/b&gt;: int [FK -&gt; Stores.Id, Required]&#xa;+ &lt;b&gt;CategoryId&lt;/b&gt;: int [FK -&gt; Categories.Id]&#xa;+ &lt;b&gt;CreatedAt&lt;/b&gt;: datetime = DateTime.UtcNow&#xa;-----------------------------------------------------&#xa;+ CalculateDiscount(): void&#xa;+ IsOfferActive(): bool&#xa;+ ToggleSponsored(priority: int): void" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#EF4444;fontColor=#991B1B;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="460" y="480" width="330" height="370" as="geometry" />
-        </mxCell>
-
-        <!-- 6. CATEGORIES TABLE / CLASS (Bottom Right) -->
-        <mxCell id="c_categories" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;Categories (الأقسام والتصنيفات)&lt;/b&gt;&#xa;-----------------------------------------------------&#xa;+ &lt;b&gt;Id&lt;/b&gt;: int [PK, AutoIncrement]&#xa;+ &lt;b&gt;Name&lt;/b&gt;: nvarchar(100) [Required]&#xa;+ &lt;b&gt;IconName&lt;/b&gt;: nvarchar(80)&#xa;+ &lt;b&gt;Description&lt;/b&gt;: nvarchar(300)&#xa;+ &lt;b&gt;CreatedAt&lt;/b&gt;: datetime = DateTime.UtcNow&#xa;-----------------------------------------------------&#xa;+ GetActiveOffersCount(): int" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#F59E0B;fontColor=#92400E;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="890" y="520" width="300" height="190" as="geometry" />
-        </mxCell>
-
-        <!-- RELATIONSHIPS WITH CLEAR CARDINALITIES -->
-        <!-- 1. Users (1) to Stores (0..1) -->
-        <mxCell id="rel_u_s" value="&lt;b&gt;1&lt;/b&gt; owns &lt;b&gt;0..1&lt;/b&gt;&#xa;[OwnerId = User.Id]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.3;entryDx=0;entryDy=0;exitX=1;exitY=0.3;exitDx=0;exitDy=0;strokeWidth=2.5;strokeColor=#2563EB;fontColor=#1E40AF;align=center;" edge="1" parent="1" source="c_users" target="c_stores">
+        <!-- RELATIONSHIPS WITH MULTIPLICITIES & ROLES -->
+        <!-- User (1) to Merchant (0..*) -->
+        <mxCell id="rel_u_m" value="&lt;b&gt;1&lt;/b&gt; owns &lt;b&gt;0..*&lt;/b&gt;&#xa;[UserId]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.3;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=2;strokeColor=#2563EB;fontColor=#1E40AF;align=center;" edge="1" parent="1" source="c_user" target="c_merchant">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
-        <!-- 2. Stores (1) to Branches (1..*) -->
-        <mxCell id="rel_s_b" value="&lt;b&gt;1&lt;/b&gt; has &lt;b&gt;1..*&lt;/b&gt;&#xa;[StoreId = Store.Id]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=2.5;strokeColor=#64748B;fontColor=#334155;align=center;" edge="1" parent="1" source="c_stores" target="c_branches">
+        <!-- Merchant (1) to Offer (0..*) -->
+        <mxCell id="rel_m_o" value="&lt;b&gt;1&lt;/b&gt; publishes &lt;b&gt;0..*&lt;/b&gt;&#xa;[MerchantId]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=2.5;strokeColor=#059669;fontColor=#065F46;align=center;" edge="1" parent="1" source="c_merchant" target="c_offer">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
-        <!-- 3. Stores (1) to Offers (0..*) -->
-        <mxCell id="rel_s_o" value="&lt;b&gt;1&lt;/b&gt; publishes &lt;b&gt;0..*&lt;/b&gt;&#xa;[StoreId = Store.Id]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=3;strokeColor=#10B981;fontColor=#065F46;align=center;" edge="1" parent="1" source="c_stores" target="c_offers">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <!-- 4. Categories (1) to Offers (0..*) -->
-        <mxCell id="rel_c_o" value="&lt;b&gt;1&lt;/b&gt; categorizes &lt;b&gt;0..*&lt;/b&gt;&#xa;[CategoryId = Category.Id]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.4;entryDx=0;entryDy=0;exitX=0;exitY=0.4;exitDx=0;exitDy=0;strokeWidth=2.5;strokeColor=#F59E0B;fontColor=#92400E;align=center;" edge="1" parent="1" source="c_categories" target="c_offers">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <!-- 5. Users (1) to Favorites (0..*) -->
-        <mxCell id="rel_u_f" value="&lt;b&gt;1&lt;/b&gt; creates &lt;b&gt;0..*&lt;/b&gt;&#xa;[UserId = User.Id]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=2.5;strokeColor=#3B82F6;fontColor=#1E40AF;align=center;" edge="1" parent="1" source="c_users" target="c_favorites">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <!-- 6. Offers (1) to Favorites (0..*) -->
-        <mxCell id="rel_o_f" value="&lt;b&gt;1&lt;/b&gt; saved in &lt;b&gt;0..*&lt;/b&gt;&#xa;[OfferId = Offer.Id]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;entryY=0.5;exitDx=0;exitDy=0;strokeWidth=2.5;strokeColor=#C084FC;fontColor=#6B21A8;align=center;" edge="1" parent="1" source="c_offers" target="c_favorites">
-          <mxGeometry relative="1" as="geometry" />
+        <!-- Category (1) to Offer (0..*) -->
+        <mxCell id="rel_c_o" value="&lt;b&gt;1&lt;/b&gt; categorizes &lt;b&gt;0..*&lt;/b&gt;&#xa;[CategoryId]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.3;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=2;strokeColor=#D97706;fontColor=#92400E;align=center;" edge="1" parent="1" source="c_category" target="c_offer">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="975" y="688" />
+            </Array>
+          </mxGeometry>
         </mxCell>
 
       </root>

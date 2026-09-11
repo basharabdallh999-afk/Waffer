@@ -1,202 +1,171 @@
-<mxfile host="app.diagrams.net" modified="2026-09-11T13:00:00.000Z" agent="Antigravity" version="21.0.0" type="device">
-  <diagram id="Sequence_V2" name="Sequence Diagram">
-    <mxGraphModel dx="1250" dy="850" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1050" background="#FFFFFF" math="0" shadow="1">
+<mxfile host="app.diagrams.net" modified="2026-09-11T13:30:00.000Z" agent="Antigravity" version="21.0.0" type="device">
+  <diagram id="Standard_Sequence" name="UML Sequence Diagram">
+    <mxGraphModel dx="1250" dy="850" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1100" background="#FFFFFF" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
 
         <!-- Title -->
-        <mxCell id="seq_header" value="&lt;b style=&quot;font-size: 19px;&quot;&gt;مخطط التتابع: دورة تسجيل المتجر، مراجعة وتوثيق المدير، ونشر أول عرض&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;End-to-End Sequence: Merchant Registration ◄► Admin Verification ◄► Publishing Offers&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fillColor=#0F172A;fontColor=#FFFFFF;strokeColor=#1E293B;shadow=1;" vertex="1" parent="1">
-          <mxGeometry x="150" y="20" width="900" height="55" as="geometry" />
+        <mxCell id="seq_title" value="&lt;b style=&quot;font-size: 20px;&quot;&gt;مخطط التتابع القياسي: دورة تسجيل المتجر والتوثيق ونشر العروض&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 13px; color: #475569;&quot;&gt;UML Sequence: Merchant Registration ◄► Admin Approval ◄► Offer Publishing&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fillColor=#F8FAFC;fontColor=#0F172A;strokeColor=#CBD5E1;" vertex="1" parent="1">
+          <mxGeometry x="175" y="20" width="850" height="50" as="geometry" />
         </mxCell>
 
-        <!-- Lifelines -->
-        <!-- 1. Merchant -->
-        <mxCell id="line_merchant" value="التاجر&#xa;(Merchant)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#ECFDF5;strokeColor=#10B981;fontColor=#065F46;fontStyle=1;size=40;" vertex="1" parent="1">
-          <mxGeometry x="60" y="95" width="110" height="880" as="geometry" />
+        <!-- 6 LIFELINES -->
+        <!-- 1. Merchant Actor -->
+        <mxCell id="ll_m" value=":التاجر&#xa;(Merchant)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#ECFDF5;strokeColor=#059669;fontColor=#065F46;fontStyle=1;size=40;" vertex="1" parent="1">
+          <mxGeometry x="60" y="90" width="110" height="960" as="geometry" />
         </mxCell>
 
         <!-- 2. Flutter App -->
-        <mxCell id="line_flutter" value="تطبيق الموبايل&#xa;(Flutter App)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#EFF6FF;strokeColor=#3B82F6;fontColor=#1E40AF;fontStyle=1;size=40;" vertex="1" parent="1">
-          <mxGeometry x="250" y="95" width="120" height="880" as="geometry" />
+        <mxCell id="ll_app" value=":تطبيق الموبايل&#xa;(Flutter App)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#EFF6FF;strokeColor=#2563EB;fontColor=#1E40AF;fontStyle=1;size=40;" vertex="1" parent="1">
+          <mxGeometry x="250" y="90" width="120" height="960" as="geometry" />
         </mxCell>
 
         <!-- 3. Web API -->
-        <mxCell id="line_api" value="سيرفر الـ API&#xa;(ASP.NET Core)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#F5F3FF;strokeColor=#8B5CF6;fontColor=#5B21B6;fontStyle=1;size=40;" vertex="1" parent="1">
-          <mxGeometry x="450" y="95" width="130" height="880" as="geometry" />
+        <mxCell id="ll_api" value=":الواجهة البرمجية&#xa;(Web API)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#F5F3FF;strokeColor=#7C3AED;fontColor=#5B21B6;fontStyle=1;size=40;" vertex="1" parent="1">
+          <mxGeometry x="450" y="90" width="120" height="960" as="geometry" />
         </mxCell>
 
         <!-- 4. Database -->
-        <mxCell id="line_db" value="قاعدة البيانات&#xa;(EF Core / DB)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#FEF3C7;strokeColor=#F59E0B;fontColor=#92400E;fontStyle=1;size=40;" vertex="1" parent="1">
-          <mxGeometry x="650" y="95" width="130" height="880" as="geometry" />
+        <mxCell id="ll_db" value=":قاعدة البيانات&#xa;(ApplicationDb)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#FEF3C7;strokeColor=#D97706;fontColor=#92400E;fontStyle=1;size=40;" vertex="1" parent="1">
+          <mxGeometry x="650" y="90" width="120" height="960" as="geometry" />
         </mxCell>
 
         <!-- 5. MVC Admin Portal -->
-        <mxCell id="line_mvc" value="لوحة تحكم الويب&#xa;(MVC Portal)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#FEE2E2;strokeColor=#EF4444;fontColor=#991B1B;fontStyle=1;size=40;" vertex="1" parent="1">
-          <mxGeometry x="850" y="95" width="130" height="880" as="geometry" />
+        <mxCell id="ll_mvc" value=":لوحة تحكم الويب&#xa;(MVC Portal)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontStyle=1;size=40;" vertex="1" parent="1">
+          <mxGeometry x="850" y="90" width="120" height="960" as="geometry" />
         </mxCell>
 
-        <!-- 6. Admin -->
-        <mxCell id="line_admin" value="مدير النظام&#xa;(System Admin)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#FEE2E2;strokeColor=#DC2626;fontColor=#7F1D1D;fontStyle=1;size=40;" vertex="1" parent="1">
-          <mxGeometry x="1030" y="95" width="110" height="880" as="geometry" />
+        <!-- 6. Admin Actor -->
+        <mxCell id="ll_a" value=":مدير النظام&#xa;(System Admin)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontStyle=1;size=40;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="90" width="110" height="960" as="geometry" />
         </mxCell>
 
-        <!-- PHASE 1: REGISTRATION -->
-        <mxCell id="box_phase1" value="&lt;b&gt;المرحلة الأولى: تقديم طلب انضمام التاجر (Merchant Registration &amp;amp; Pending Review)&lt;/b&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#ECFDF5;strokeColor=#10B981;fontColor=#065F46;align=center;" vertex="1" parent="1">
-          <mxGeometry x="60" y="150" width="1080" height="30" as="geometry" />
+        <!-- PART 1: MERCHANT REGISTRATION -->
+        <mxCell id="frame_p1" value="المرحلة 1: تسجيل المتجر وتعليق الحساب للمراجعة" style="shape=umlFrame;whiteSpace=wrap;html=1;width=270;height=22;fillColor=none;strokeColor=#059669;fontColor=#065F46;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="150" width="750" height="260" as="geometry" />
         </mxCell>
 
-        <!-- Step 1 -->
-        <mxCell id="s1" value="1. ملء بيانات المتجر والنقر على &quot;إنشاء حساب تاجر&quot;" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#059669;fontColor=#065F46;strokeWidth=2;" edge="1" parent="1" source="line_merchant" target="line_flutter">
+        <!-- Msg 1 -->
+        <mxCell id="m1" value="1: إدخال بيانات المتجر والنقر على تسجيل" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#059669;strokeWidth=1.5;" edge="1" parent="1" source="ll_m" target="ll_app">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="180" y="195" /></Array></mxGeometry>
+        </mxCell>
+
+        <!-- Msg 2 -->
+        <mxCell id="m2" value="2: POST /api/auth/register-merchant (StoreName, Email, Pass)" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#2563EB;strokeWidth=1.5;" edge="1" parent="1" source="ll_app" target="ll_api">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="380" y="230" /></Array></mxGeometry>
+        </mxCell>
+
+        <!-- Msg 3 -->
+        <mxCell id="m3" value="3: validate &amp;amp; hashPassword()" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#7C3AED;strokeWidth=1;" edge="1" parent="1" source="ll_api" target="ll_api">
           <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="200" y="200" /></Array>
+            <Array as="points"><mxPoint x="530" y="255" /><mxPoint x="530" y="275" /></Array>
           </mxGeometry>
         </mxCell>
 
-        <!-- Step 2 -->
-        <mxCell id="s2" value="2. POST /api/auth/register-merchant (StoreName, Email, Password)" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#2563EB;fontColor=#1E40AF;strokeWidth=2;" edge="1" parent="1" source="line_flutter" target="line_api">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="390" y="230" /></Array>
-          </mxGeometry>
+        <!-- Msg 4 -->
+        <mxCell id="m4" value="4: Add(Merchant { IsApproved=false, IsSuspended=false })" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#7C3AED;strokeWidth=1.5;" edge="1" parent="1" source="ll_api" target="ll_db">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="580" y="305" /></Array></mxGeometry>
         </mxCell>
 
-        <!-- Step 3 -->
-        <mxCell id="s3" value="3. فحص صحة البيانات (DataAnnotations) وتشفير كلمة المرور" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#7C3AED;fontColor=#5B21B6;" edge="1" parent="1" source="line_api" target="line_api">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="550" y="260" />
-              <mxPoint x="550" y="280" />
-            </Array>
-          </mxGeometry>
+        <!-- Msg 5 -->
+        <mxCell id="m5" value="5: SaveChanges() [Success]" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;strokeColor=#D97706;" edge="1" parent="1" source="ll_db" target="ll_api">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="580" y="335" /></Array></mxGeometry>
         </mxCell>
 
-        <!-- Step 4 -->
-        <mxCell id="s4" value="4. INSERT INTO Stores (IsApproved = false, Status = 'Pending')" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#7C3AED;fontColor=#5B21B6;strokeWidth=2;" edge="1" parent="1" source="line_api" target="line_db">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="600" y="305" /></Array>
-          </mxGeometry>
+        <!-- Msg 6 -->
+        <mxCell id="m6" value="6: 201 Created { message: &quot;طلبك قيد المراجعة والتوثيق&quot; }" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;strokeColor=#2563EB;" edge="1" parent="1" source="ll_api" target="ll_app">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="380" y="365" /></Array></mxGeometry>
         </mxCell>
 
-        <!-- Step 5 -->
-        <mxCell id="s5" value="5. تم حفظ السجل بنجاح بحالة معلق (OK)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;strokeColor=#D97706;fontColor=#92400E;" edge="1" parent="1" source="line_db" target="line_api">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="600" y="335" /></Array>
-          </mxGeometry>
+        <!-- Msg 7 -->
+        <mxCell id="m7" value="7: عرض نافذة: &quot;طلبك قيد المراجعة من قِبل الإدارة&quot;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;strokeColor=#059669;" edge="1" parent="1" source="ll_app" target="ll_m">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="180" y="395" /></Array></mxGeometry>
         </mxCell>
 
-        <!-- Step 6 -->
-        <mxCell id="s6" value="6. HTTP 201 Created (&quot;تم استلام طلبك وبانتظار التوثيق&quot;)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;strokeColor=#2563EB;fontColor=#1E40AF;" edge="1" parent="1" source="line_api" target="line_flutter">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="390" y="365" /></Array>
-          </mxGeometry>
+        <!-- PART 2: ADMIN VERIFICATION -->
+        <mxCell id="frame_p2" value="المرحلة 2: مراجعة وتوثيق المتجر من لوحة تحكم الإدارة" style="shape=umlFrame;whiteSpace=wrap;html=1;width=270;height=22;fillColor=none;strokeColor=#DC2626;fontColor=#991B1B;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="430" width="530" height="280" as="geometry" />
         </mxCell>
 
-        <!-- Step 7 -->
-        <mxCell id="s7" value="7. إظهار نافذة منبثقة تفاعلية: &quot;طلبك قيد المراجعة من قِبل الإدارة&quot;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;strokeColor=#059669;fontColor=#065F46;" edge="1" parent="1" source="line_flutter" target="line_merchant">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="200" y="395" /></Array>
-          </mxGeometry>
+        <!-- Msg 8 -->
+        <mxCell id="m8" value="8: تسجيل دخول المشرف وفتح صفحة المتاجر" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#DC2626;strokeWidth=1.5;" edge="1" parent="1" source="ll_a" target="ll_mvc">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="990" y="475" /></Array></mxGeometry>
         </mxCell>
 
-        <!-- PHASE 2: ADMIN APPROVAL -->
-        <mxCell id="box_phase2" value="&lt;b&gt;المرحلة الثانية: مراجعة وتوثيق المتجر من لوحة تحكم الإدارة (Admin Review &amp;amp; Verification)&lt;/b&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#FEF2F2;strokeColor=#EF4444;fontColor=#991B1B;align=center;" vertex="1" parent="1">
-          <mxGeometry x="60" y="440" width="1080" height="30" as="geometry" />
+        <!-- Msg 9 -->
+        <mxCell id="m9" value="9: GetPendingMerchants() [IsApproved == false]" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#DC2626;strokeWidth=1.5;" edge="1" parent="1" source="ll_mvc" target="ll_db">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="780" y="510" /></Array></mxGeometry>
         </mxCell>
 
-        <!-- Step 8 -->
-        <mxCell id="s8" value="8. فتح لوحة تحكم الويب والاطلاع على التنبيهات" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#DC2626;fontColor=#991B1B;strokeWidth=2;" edge="1" parent="1" source="line_admin" target="line_mvc">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="1000" y="490" /></Array>
-          </mxGeometry>
+        <!-- Msg 10 -->
+        <mxCell id="m10" value="10: Return List&lt;Merchant&gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;strokeColor=#D97706;" edge="1" parent="1" source="ll_db" target="ll_mvc">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="780" y="540" /></Array></mxGeometry>
         </mxCell>
 
-        <!-- Step 9 -->
-        <mxCell id="s9" value="9. جلب المتاجر الجديدة (SELECT FROM Stores WHERE IsApproved = false)" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#DC2626;fontColor=#991B1B;strokeWidth=2;" edge="1" parent="1" source="line_mvc" target="line_db">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="800" y="520" /></Array>
-          </mxGeometry>
+        <!-- Msg 11 -->
+        <mxCell id="m11" value="11: عرض بانر: &quot;يوجد طلب جديد بانتظار التوثيق!&quot;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;strokeColor=#DC2626;" edge="1" parent="1" source="ll_mvc" target="ll_a">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="990" y="570" /></Array></mxGeometry>
         </mxCell>
 
-        <!-- Step 10 -->
-        <mxCell id="s10" value="10. إرجاع قائمة المتاجر المعلقة" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;strokeColor=#D97706;fontColor=#92400E;" edge="1" parent="1" source="line_db" target="line_mvc">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="800" y="550" /></Array>
-          </mxGeometry>
+        <!-- Msg 12 -->
+        <mxCell id="m12" value="12: الضغط على زر &quot;توثيق&quot; (Approve)" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#DC2626;strokeWidth=1.5;" edge="1" parent="1" source="ll_a" target="ll_mvc">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="990" y="610" /></Array></mxGeometry>
         </mxCell>
 
-        <!-- Step 11 -->
-        <mxCell id="s11" value="11. إظهار بانر: &quot;يوجد طلب انضمام لمتجر جديد بانتظار التوثيق!&quot;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;strokeColor=#DC2626;fontColor=#991B1B;" edge="1" parent="1" source="line_mvc" target="line_admin">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="1000" y="580" /></Array>
-          </mxGeometry>
+        <!-- Msg 13 -->
+        <mxCell id="m13" value="13: Update(Merchant { IsApproved = true })" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#DC2626;strokeWidth=1.5;" edge="1" parent="1" source="ll_mvc" target="ll_db">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="780" y="640" /></Array></mxGeometry>
         </mxCell>
 
-        <!-- Step 12 -->
-        <mxCell id="s12" value="12. فحص بيانات المتجر والنقر على زر &quot;توثيق&quot; (Approve)" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#DC2626;fontColor=#991B1B;strokeWidth=2;" edge="1" parent="1" source="line_admin" target="line_mvc">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="1000" y="620" /></Array>
-          </mxGeometry>
+        <!-- Msg 14 -->
+        <mxCell id="m14" value="14: SaveChanges() [Updated]" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;strokeColor=#D97706;" edge="1" parent="1" source="ll_db" target="ll_mvc">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="780" y="665" /></Array></mxGeometry>
         </mxCell>
 
-        <!-- Step 13 -->
-        <mxCell id="s13" value="13. UPDATE Stores SET IsApproved = true, ApprovedAt = NOW()" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#DC2626;fontColor=#991B1B;strokeWidth=2;" edge="1" parent="1" source="line_mvc" target="line_db">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="800" y="650" /></Array>
-          </mxGeometry>
+        <!-- Msg 15 -->
+        <mxCell id="m15" value="15: إشعار نجاح التوثيق وتحويل المتجر لـ &quot;معتمد وموثق&quot;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;strokeColor=#DC2626;" edge="1" parent="1" source="ll_mvc" target="ll_a">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="990" y="695" /></Array></mxGeometry>
         </mxCell>
 
-        <!-- Step 14 -->
-        <mxCell id="s14" value="14. تم التحديث والتوثيق بنجاح في قاعدة البيانات" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;strokeColor=#D97706;fontColor=#92400E;" edge="1" parent="1" source="line_db" target="line_mvc">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="800" y="680" /></Array>
-          </mxGeometry>
+        <!-- PART 3: PUBLISH OFFER -->
+        <mxCell id="frame_p3" value="المرحلة 3: تفعيل المتجر ونشر أول عرض تجاري" style="shape=umlFrame;whiteSpace=wrap;html=1;width=270;height=22;fillColor=none;strokeColor=#2563EB;fontColor=#1E40AF;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="730" width="750" height="290" as="geometry" />
         </mxCell>
 
-        <!-- Step 15 -->
-        <mxCell id="s15" value="15. رسالة تأكيد للمدير: &quot;تم توثيق المتجر ونقله للمتاجر المعتمدة&quot;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;strokeColor=#DC2626;fontColor=#991B1B;" edge="1" parent="1" source="line_mvc" target="line_admin">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="1000" y="710" /></Array>
-          </mxGeometry>
+        <!-- Msg 16 -->
+        <mxCell id="m16" value="16: فتح لوحة تحكم المتجر بالتطبيق" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#059669;strokeWidth=1.5;" edge="1" parent="1" source="ll_m" target="ll_app">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="180" y="775" /></Array></mxGeometry>
         </mxCell>
 
-        <!-- PHASE 3: UNLOCK & PUBLISH -->
-        <mxCell id="box_phase3" value="&lt;b&gt;المرحلة الثالثة: تفعيل صلاحية النشر وإضافة أول عرض تجاري (Store Activation &amp;amp; Offer Publishing)&lt;/b&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#EFF6FF;strokeColor=#3B82F6;fontColor=#1E40AF;align=center;" vertex="1" parent="1">
-          <mxGeometry x="60" y="750" width="1080" height="30" as="geometry" />
+        <!-- Msg 17 -->
+        <mxCell id="m17" value="17: GET /api/merchants/my-store-status" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#2563EB;strokeWidth=1.5;" edge="1" parent="1" source="ll_app" target="ll_api">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="380" y="805" /></Array></mxGeometry>
         </mxCell>
 
-        <!-- Step 16 -->
-        <mxCell id="s16" value="16. فتح تطبيق الموبايل واستعلام حالة الاعتماد" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#059669;fontColor=#065F46;strokeWidth=2;" edge="1" parent="1" source="line_merchant" target="line_flutter">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="200" y="800" /></Array>
-          </mxGeometry>
+        <!-- Msg 18 -->
+        <mxCell id="m18" value="18: 200 OK { isApproved: true, canPublish: true }" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;strokeColor=#2563EB;" edge="1" parent="1" source="ll_api" target="ll_app">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="380" y="835" /></Array></mxGeometry>
         </mxCell>
 
-        <!-- Step 17 -->
-        <mxCell id="s17" value="17. GET /api/merchants/my-store-status" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#2563EB;fontColor=#1E40AF;strokeWidth=2;" edge="1" parent="1" source="line_flutter" target="line_api">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="390" y="830" /></Array>
-          </mxGeometry>
+        <!-- Msg 19 -->
+        <mxCell id="m19" value="19: تفعيل زر &quot;نشر عرض جديد&quot; وإلغاء شريط التعليق" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;strokeColor=#059669;" edge="1" parent="1" source="ll_app" target="ll_m">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="180" y="865" /></Array></mxGeometry>
         </mxCell>
 
-        <!-- Step 18 -->
-        <mxCell id="s18" value="18. HTTP 200 OK (IsApproved = true, CanPublish = true)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;strokeColor=#2563EB;fontColor=#1E40AF;" edge="1" parent="1" source="line_api" target="line_flutter">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="390" y="860" /></Array>
-          </mxGeometry>
+        <!-- Msg 20 -->
+        <mxCell id="m20" value="20: POST /api/offers (Title, OriginalPrice, DiscountedPrice, Image)" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#2563EB;strokeWidth=1.5;" edge="1" parent="1" source="ll_app" target="ll_api">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="380" y="905" /></Array></mxGeometry>
         </mxCell>
 
-        <!-- Step 19 -->
-        <mxCell id="s19" value="19. إخفاء رسالة التعليق وظهور شارة &quot;متجر موثق ومعتمد&quot; وتفعيل زر &quot;إضافة عرض جديد&quot;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;strokeColor=#059669;fontColor=#065F46;" edge="1" parent="1" source="line_flutter" target="line_merchant">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="200" y="890" /></Array>
-          </mxGeometry>
+        <!-- Msg 21 -->
+        <mxCell id="m21" value="21: Add(Offer) &amp;amp; SaveChanges()" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#7C3AED;strokeWidth=1.5;" edge="1" parent="1" source="ll_api" target="ll_db">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="580" y="935" /></Array></mxGeometry>
         </mxCell>
 
-        <!-- Step 20 -->
-        <mxCell id="s20" value="20. نشر العرض بنجاح ويظهر فوراً في شاشة المستهلكين الرئيسية" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=#059669;fontColor=#065F46;strokeWidth=2;" edge="1" parent="1" source="line_merchant" target="line_flutter">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points"><mxPoint x="200" y="930" /></Array>
-          </mxGeometry>
+        <!-- Msg 22 -->
+        <mxCell id="m22" value="22: 201 Created (تم نشر العرض بنجاح ويظهر للمستهلكين)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;strokeColor=#059669;" edge="1" parent="1" source="ll_api" target="ll_app">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="380" y="975" /></Array></mxGeometry>
         </mxCell>
 
       </root>
