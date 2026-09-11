@@ -1,161 +1,167 @@
-<mxfile host="app.diagrams.net" modified="2026-09-11T13:30:00.000Z" agent="Antigravity" version="21.0.0" type="device">
-  <diagram id="Standard_UseCase" name="UML Use Case Diagram">
-    <mxGraphModel dx="1250" dy="850" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1300" pageHeight="1100" background="#FFFFFF" math="0" shadow="0">
+<mxfile host="app.diagrams.net" modified="2026-09-11T13:40:00.000Z" agent="Antigravity" version="21.0.0" type="device">
+  <diagram id="Direct_UseCase_Diagram" name="UML Use Case Diagram">
+    <mxGraphModel dx="1300" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1350" pageHeight="1150" background="#FFFFFF" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
 
         <!-- Title -->
-        <mxCell id="uc_title" value="&lt;b style=&quot;font-size: 20px;&quot;&gt;مخطط حالات الاستخدام القياسي لمنصة وَفِّر (UML Use Case Diagram)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 13px; color: #475569;&quot;&gt;Waffer Platform: Consumer, Merchant, and System Admin Interactions&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fillColor=#F8FAFC;fontColor=#0F172A;strokeColor=#CBD5E1;" vertex="1" parent="1">
-          <mxGeometry x="250" y="20" width="800" height="50" as="geometry" />
+        <mxCell id="uc_title" value="&lt;b style=&quot;font-size: 20px;&quot;&gt;مخطط حالات الاستخدام القياسي لمنصة وَفِّر (UML Use Case Diagram)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 13px; color: #475569;&quot;&gt;Waffer Platform: Complete Actor-to-Use-Case Association &amp;amp; Interaction Map&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fillColor=#F8FAFC;fontColor=#0F172A;strokeColor=#CBD5E1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="20" width="850" height="50" as="geometry" />
         </mxCell>
 
-        <!-- SYSTEM BOUNDARY -->
-        <mxCell id="sys_rect" value="نظام منصة وَفِّر (Waffer Platform System Boundary)" style="swimlane;whiteSpace=wrap;html=1;rounded=0;fillColor=#FFFFFF;strokeColor=#334155;fontColor=#0F172A;startSize=28;fontStyle=1;fontSize=14;" vertex="1" parent="1">
-          <mxGeometry x="260" y="90" width="780" height="960" as="geometry" />
+        <!-- SYSTEM BOUNDARY BOX (Sent to Back) -->
+        <mxCell id="sys_box" value="&lt;b style=&quot;font-size: 15px;&quot;&gt;نظام منصة وَفِّر (Waffer Platform System Boundary)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F8FAFC;strokeColor=#475569;strokeWidth=2;dashed=1;dashPattern=8 8;verticalAlign=top;align=center;spacingTop=12;fontColor=#1E293B;" vertex="1" parent="1">
+          <mxGeometry x="240" y="90" width="810" height="980" as="geometry" />
         </mxCell>
 
-        <!-- SHARED USE CASE: LOGIN (CENTER TOP) -->
-        <mxCell id="uc_login" value="تسجيل الدخول والتحقق&#xa;(Login &amp;amp; Authentication)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontColor=#92400E;fontStyle=1;fontSize=12;" vertex="1" parent="sys_rect">
-          <mxGeometry x="280" y="45" width="220" height="55" as="geometry" />
+        <!-- SHARED: LOGIN (CENTER TOP) -->
+        <mxCell id="uc_login" value="تسجيل الدخول والتحقق من الصلاحيات&#xa;(Login &amp;amp; Authentication)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontColor=#92400E;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="525" y="125" width="240" height="55" as="geometry" />
         </mxCell>
 
-        <!-- CONSUMER USE CASES (LEFT SIDE OF BOUNDARY) -->
-        <mxCell id="uc_c1" value="تصفح العروض والتخفيضات&#xa;(Browse Active Offers)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;fontColor=#1E40AF;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="40" y="125" width="220" height="50" as="geometry" />
+        <!-- ================= CONSUMER USE CASES (LEFT TOP) ================= -->
+        <mxCell id="uc_c1" value="تصفح العروض اليومية والتخفيضات&#xa;(Browse Daily Offers)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;fontColor=#1E40AF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="200" width="220" height="48" as="geometry" />
         </mxCell>
 
-        <mxCell id="uc_c2" value="مشاهدة البنرات الإعلانية المتحركة (3s)&#xa;(View Auto-Scrolling Banners)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;fontColor=#1E40AF;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="40" y="195" width="220" height="50" as="geometry" />
+        <mxCell id="uc_c2" value="مشاهدة البنرات المميزة المتحركة (3s)&#xa;(View Auto-Scrolling Banners)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;fontColor=#1E40AF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="260" width="220" height="48" as="geometry" />
         </mxCell>
 
-        <mxCell id="uc_c3" value="تصفح العروض حسب الأقسام&#xa;(Browse by Category)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;fontColor=#1E40AF;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="40" y="265" width="220" height="50" as="geometry" />
+        <mxCell id="uc_c3" value="تصفح العروض حسب الأقسام&#xa;(Browse by Categories)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;fontColor=#1E40AF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="320" width="220" height="48" as="geometry" />
         </mxCell>
 
-        <mxCell id="uc_c4" value="البحث والفلترة المتقدمة (SheetModal)&#xa;(Search &amp;amp; Filter Offers)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;fontColor=#1E40AF;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="40" y="335" width="220" height="50" as="geometry" />
+        <mxCell id="uc_c4" value="البحث والفلترة المتقدمة (SheetModal)&#xa;(Search &amp;amp; Filter Offers)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;fontColor=#1E40AF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="380" width="220" height="48" as="geometry" />
         </mxCell>
 
-        <mxCell id="uc_c5" value="معاينة تفاصيل العرض وموقعه&#xa;(View Offer Details)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;fontColor=#1E40AF;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="40" y="405" width="220" height="50" as="geometry" />
+        <mxCell id="uc_c5" value="معاينة تفاصيل العرض، السعر، ونسبة التوفير&#xa;(View Offer Details &amp;amp; Discount)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;fontColor=#1E40AF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="440" width="220" height="48" as="geometry" />
         </mxCell>
 
-        <mxCell id="uc_c6" value="إدارة قائمة المفضلة&#xa;(Manage Favorites List)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;fontColor=#1E40AF;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="40" y="475" width="220" height="50" as="geometry" />
+        <mxCell id="uc_c6" value="إضافة وحذف العروض من قائمة المفضلة&#xa;(Manage Favorites List)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;fontColor=#1E40AF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="500" width="220" height="48" as="geometry" />
         </mxCell>
 
-        <!-- MERCHANT USE CASES (LEFT-MIDDLE SIDE OF BOUNDARY) -->
-        <mxCell id="uc_m1" value="تقديم طلب تسجيل متجر جديد&#xa;(Register Store - Pending)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;fontColor=#065F46;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="40" y="565" width="220" height="50" as="geometry" />
+        <!-- ================= MERCHANT USE CASES (LEFT BOTTOM) ================= -->
+        <mxCell id="uc_m1" value="تقديم طلب تسجيل متجر جديد&#xa;(Register Store - Pending Review)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;fontColor=#065F46;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="600" width="220" height="50" as="geometry" />
         </mxCell>
 
-        <mxCell id="uc_m2" value="متابعة حالة المتجر في لوحة التاجر&#xa;(Check Store Approval Status)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;fontColor=#065F46;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="40" y="635" width="220" height="50" as="geometry" />
+        <mxCell id="uc_m2" value="متابعة حالة المتجر في لوحة التاجر&#xa;(Check Store Approval Status)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;fontColor=#065F46;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="665" width="220" height="50" as="geometry" />
         </mxCell>
 
-        <mxCell id="uc_m3" value="نشر عرض تجاري جديد مع الصورة&#xa;(Create &amp;amp; Publish Store Offer)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;fontColor=#065F46;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="40" y="705" width="220" height="50" as="geometry" />
+        <mxCell id="uc_m3" value="نشر عرض تجاري جديد مع الصورة&#xa;(Publish New Offer with Image)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;fontColor=#065F46;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="730" width="220" height="50" as="geometry" />
         </mxCell>
 
-        <mxCell id="uc_m4" value="تعديل وحذف العروض الخاصة به&#xa;(Edit &amp;amp; Delete Own Offers)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;fontColor=#065F46;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="40" y="775" width="220" height="50" as="geometry" />
+        <mxCell id="uc_m4" value="تعديل وحذف العروض الخاصة به&#xa;(Edit &amp;amp; Delete Own Offers)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;fontColor=#065F46;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="795" width="220" height="50" as="geometry" />
         </mxCell>
 
-        <mxCell id="uc_m5" value="معاينة بطاقة الإيقاف وسبب الإيقاف&#xa;(View Suspension Notice Banner)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;fontColor=#065F46;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="40" y="845" width="220" height="50" as="geometry" />
+        <mxCell id="uc_m5" value="معاينة بطاقة وسبب الإيقاف المؤقت/النهائي&#xa;(View Suspension Notice Banner)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;fontColor=#065F46;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="860" width="220" height="50" as="geometry" />
         </mxCell>
 
-        <!-- ADMIN USE CASES (RIGHT SIDE OF BOUNDARY) -->
-        <mxCell id="uc_a1" value="معاينة إحصائيات لوحة التحكم&#xa;(Dashboard Overview &amp;amp; Stats)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="510" y="125" width="230" height="50" as="geometry" />
+        <mxCell id="uc_m6" value="معاينة إحصائيات عروض المتجر&#xa;(View Store Analytics)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;fontColor=#065F46;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="925" width="220" height="50" as="geometry" />
         </mxCell>
 
-        <mxCell id="uc_a2" value="مراجعة طلبات المتاجر المعلقة&#xa;(Review Pending Merchant Requests)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="510" y="200" width="230" height="55" as="geometry" />
+        <!-- ================= ADMIN USE CASES (RIGHT COLUMN) ================= -->
+        <mxCell id="uc_a1" value="معاينة إحصائيات لوحة التحكم الشاملة&#xa;(Dashboard Metrics &amp;amp; Overview)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="200" width="230" height="50" as="geometry" />
         </mxCell>
 
-        <mxCell id="uc_a3" value="توثيق واعتماد المتجر بضغطة زر&#xa;(Approve &amp;amp; Verify Merchant)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="510" y="280" width="230" height="50" as="geometry" />
+        <mxCell id="uc_a2" value="مراجعة طلبات المتاجر المعلقة&#xa;(Review Pending Store Requests)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="270" width="230" height="50" as="geometry" />
         </mxCell>
 
-        <mxCell id="uc_a4" value="رفض طلب انضمام المتجر&#xa;(Reject Merchant Request)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="510" y="355" width="230" height="50" as="geometry" />
+        <mxCell id="uc_a3" value="توثيق واعتماد المتجر بضغطة زر&#xa;(Approve &amp;amp; Verify Merchant)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="340" width="230" height="50" as="geometry" />
         </mxCell>
 
-        <mxCell id="uc_a5" value="إيقاف المتجر مؤقتاً أو نهائياً (Modal)&#xa;(Suspend Store - Temp / Perm)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="510" y="430" width="230" height="55" as="geometry" />
+        <mxCell id="uc_a4" value="رفض طلب انضمام المتجر مع السبب&#xa;(Reject Store Registration)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="410" width="230" height="50" as="geometry" />
         </mxCell>
 
-        <mxCell id="uc_a6" value="رفع الإيقاف وإعادة تفعيل المتجر&#xa;(Unsuspend &amp;amp; Reactivate Store)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="510" y="510" width="230" height="50" as="geometry" />
+        <mxCell id="uc_a5" value="إيقاف المتجر مؤقتاً أو نهائياً (Modal)&#xa;(Suspend Store - Temp / Perm)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="480" width="230" height="55" as="geometry" />
         </mxCell>
 
-        <mxCell id="uc_a7" value="ترقية العروض كـ إعلانات مميزة (3s)&#xa;(Promote to Sponsored Banner)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="510" y="585" width="230" height="55" as="geometry" />
+        <mxCell id="uc_a6" value="رفع الإيقاف وإعادة تفعيل المتجر فوراً&#xa;(Unsuspend &amp;amp; Reactivate Store)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="555" width="230" height="50" as="geometry" />
         </mxCell>
 
-        <mxCell id="uc_a8" value="إدارة الأقسام التجارية (CRUD)&#xa;(Manage Categories)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="510" y="665" width="230" height="50" as="geometry" />
+        <mxCell id="uc_a7" value="ترقية العروض كـ إعلانات مميزة (3s)&#xa;(Promote to Sponsored Banners)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="625" width="230" height="50" as="geometry" />
         </mxCell>
 
-        <mxCell id="uc_a9" value="إدارة العروض وحذف المخالف منها&#xa;(Manage &amp;amp; Moderate All Offers)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="510" y="740" width="230" height="50" as="geometry" />
+        <mxCell id="uc_a8" value="إدارة الأقسام التجارية (CRUD)&#xa;(Manage Categories)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="695" width="230" height="50" as="geometry" />
         </mxCell>
 
-        <mxCell id="uc_a10" value="تصفح الجداول التفاعلية (DataTables)&#xa;(Search, Sort &amp;amp; Export Tables)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="sys_rect">
-          <mxGeometry x="510" y="815" width="230" height="50" as="geometry" />
+        <mxCell id="uc_a9" value="إدارة العروض وحذف المخالف منها&#xa;(Moderate &amp;amp; Manage All Offers)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="765" width="230" height="50" as="geometry" />
         </mxCell>
 
-        <!-- ACTORS (OUTSIDE BOUNDARY) -->
-        <!-- Actor 1: Consumer (Left Top) -->
-        <mxCell id="actor_c" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;العميل / المستهلك&lt;/b&gt;&lt;br&gt;(Consumer)" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="90" y="270" width="70" height="120" as="geometry" />
+        <mxCell id="uc_a10" value="تصفح الجداول التفاعلية (DataTables)&#xa;(Search, Sort &amp;amp; Export Tables)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;fontColor=#991B1B;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="835" width="230" height="50" as="geometry" />
         </mxCell>
 
-        <!-- Actor 2: Merchant (Left Bottom) -->
-        <mxCell id="actor_m" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;التاجر / صاحب المتجر&lt;/b&gt;&lt;br&gt;(Merchant)" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="90" y="690" width="70" height="120" as="geometry" />
+        <!-- ================= ACTORS ================= -->
+        <!-- 1. Consumer (Left Top) -->
+        <mxCell id="actor_consumer" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;العميل / المستهلك&lt;/b&gt;&lt;br&gt;(Consumer)" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="290" width="75" height="130" as="geometry" />
         </mxCell>
 
-        <!-- Actor 3: Admin (Right Middle) -->
-        <mxCell id="actor_a" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;مدير النظام / المشرف&lt;/b&gt;&lt;br&gt;(System Admin)" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FEF2F2;strokeColor=#DC2626;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="1140" y="470" width="70" height="120" as="geometry" />
+        <!-- 2. Merchant (Left Bottom) -->
+        <mxCell id="actor_merchant" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;التاجر / صاحب المتجر&lt;/b&gt;&lt;br&gt;(Merchant)" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="720" width="75" height="130" as="geometry" />
         </mxCell>
 
-        <!-- ASSOCIATION LINES: CONSUMER -->
-        <mxCell id="edge_c_login" style="endArrow=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#2563EB;" edge="1" parent="1" source="actor_c" target="uc_login" />
-        <mxCell id="edge_c_1" style="endArrow=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#2563EB;" edge="1" parent="1" source="actor_c" target="uc_c1" />
-        <mxCell id="edge_c_2" style="endArrow=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#2563EB;" edge="1" parent="1" source="actor_c" target="uc_c2" />
-        <mxCell id="edge_c_3" style="endArrow=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#2563EB;" edge="1" parent="1" source="actor_c" target="uc_c3" />
-        <mxCell id="edge_c_4" style="endArrow=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#2563EB;" edge="1" parent="1" source="actor_c" target="uc_c4" />
-        <mxCell id="edge_c_5" style="endArrow=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#2563EB;" edge="1" parent="1" source="actor_c" target="uc_c5" />
-        <mxCell id="edge_c_6" style="endArrow=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#2563EB;" edge="1" parent="1" source="actor_c" target="uc_c6" />
+        <!-- 3. Admin (Right Middle) -->
+        <mxCell id="actor_admin" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;مدير النظام / المشرف&lt;/b&gt;&lt;br&gt;(System Admin)" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FEF2F2;strokeColor=#DC2626;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="470" width="75" height="130" as="geometry" />
+        </mxCell>
 
-        <!-- ASSOCIATION LINES: MERCHANT -->
-        <mxCell id="edge_m_login" style="endArrow=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#059669;" edge="1" parent="1" source="actor_m" target="uc_login" />
-        <mxCell id="edge_m_1" style="endArrow=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#059669;" edge="1" parent="1" source="actor_m" target="uc_m1" />
-        <mxCell id="edge_m_2" style="endArrow=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#059669;" edge="1" parent="1" source="actor_m" target="uc_m2" />
-        <mxCell id="edge_m_3" style="endArrow=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#059669;" edge="1" parent="1" source="actor_m" target="uc_m3" />
-        <mxCell id="edge_m_4" style="endArrow=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#059669;" edge="1" parent="1" source="actor_m" target="uc_m4" />
-        <mxCell id="edge_m_5" style="endArrow=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#059669;" edge="1" parent="1" source="actor_m" target="uc_m5" />
+        <!-- ================= DIRECT SOLID CONNECTION LINES ================= -->
+        <!-- Consumer Lines -->
+        <mxCell id="line_c_login" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_login" />
+        <mxCell id="line_c_1" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_c1" />
+        <mxCell id="line_c_2" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_c2" />
+        <mxCell id="line_c_3" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_c3" />
+        <mxCell id="line_c_4" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_c4" />
+        <mxCell id="line_c_5" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_c5" />
+        <mxCell id="line_c_6" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_c6" />
 
-        <!-- ASSOCIATION LINES: ADMIN -->
-        <mxCell id="edge_a_login" style="endArrow=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#DC2626;" edge="1" parent="1" source="actor_a" target="uc_login" />
-        <mxCell id="edge_a_1" style="endArrow=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#DC2626;" edge="1" parent="1" source="actor_a" target="uc_a1" />
-        <mxCell id="edge_a_2" style="endArrow=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#DC2626;" edge="1" parent="1" source="actor_a" target="uc_a2" />
-        <mxCell id="edge_a_3" style="endArrow=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#DC2626;" edge="1" parent="1" source="actor_a" target="uc_a3" />
-        <mxCell id="edge_a_4" style="endArrow=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#DC2626;" edge="1" parent="1" source="actor_a" target="uc_a4" />
-        <mxCell id="edge_a_5" style="endArrow=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#DC2626;" edge="1" parent="1" source="actor_a" target="uc_a5" />
-        <mxCell id="edge_a_6" style="endArrow=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#DC2626;" edge="1" parent="1" source="actor_a" target="uc_a6" />
-        <mxCell id="edge_a_7" style="endArrow=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#DC2626;" edge="1" parent="1" source="actor_a" target="uc_a7" />
-        <mxCell id="edge_a_8" style="endArrow=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#DC2626;" edge="1" parent="1" source="actor_a" target="uc_a8" />
-        <mxCell id="edge_a_9" style="endArrow=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#DC2626;" edge="1" parent="1" source="actor_a" target="uc_a9" />
-        <mxCell id="edge_a_10" style="endArrow=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1.5;strokeColor=#DC2626;" edge="1" parent="1" source="actor_a" target="uc_a10" />
+        <!-- Merchant Lines -->
+        <mxCell id="line_m_login" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_login" />
+        <mxCell id="line_m_1" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_m1" />
+        <mxCell id="line_m_2" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_m2" />
+        <mxCell id="line_m_3" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_m3" />
+        <mxCell id="line_m_4" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_m4" />
+        <mxCell id="line_m_5" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_m5" />
+        <mxCell id="line_m_6" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_m6" />
 
-        <!-- INCLUDES -->
-        <mxCell id="inc_1" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;dashed=1;strokeColor=#D97706;entryX=0;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="sys_rect" source="uc_m3" target="uc_login" />
-        <mxCell id="inc_2" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;dashed=1;strokeColor=#D97706;entryX=1;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="sys_rect" source="uc_a3" target="uc_login" />
+        <!-- Admin Lines -->
+        <mxCell id="line_a_login" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_login" />
+        <mxCell id="line_a_1" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a1" />
+        <mxCell id="line_a_2" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a2" />
+        <mxCell id="line_a_3" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a3" />
+        <mxCell id="line_a_4" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a4" />
+        <mxCell id="line_a_5" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a5" />
+        <mxCell id="line_a_6" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a6" />
+        <mxCell id="line_a_7" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a7" />
+        <mxCell id="line_a_8" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a8" />
+        <mxCell id="line_a_9" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a9" />
+        <mxCell id="line_a_10" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a10" />
+
+        <!-- INCLUDES (Dashed Lines with open arrow) -->
+        <mxCell id="inc_pub" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;dashed=1;strokeColor=#D97706;fontColor=#92400E;fontSize=10;" edge="1" parent="1" source="uc_m3" target="uc_login" />
+        <mxCell id="inc_app" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;dashed=1;strokeColor=#D97706;fontColor=#92400E;fontSize=10;" edge="1" parent="1" source="uc_a3" target="uc_login" />
 
       </root>
     </mxGraphModel>
