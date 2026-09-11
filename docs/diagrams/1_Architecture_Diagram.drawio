@@ -1,116 +1,89 @@
-<mxfile host="app.diagrams.net" modified="2026-09-11T12:00:00.000Z" agent="Antigravity" version="21.0.0" type="device">
-  <diagram id="ArchitectureDiagram" name="Architecture Diagram">
-    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#F8FAFC" math="0" shadow="1">
+<mxfile host="app.diagrams.net" modified="2026-09-11T13:00:00.000Z" agent="Antigravity" version="21.0.0" type="device">
+  <diagram id="Architecture_V2" name="System Architecture">
+    <mxGraphModel dx="1200" dy="850" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="950" background="#FFFFFF" math="0" shadow="1">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        
-        <!-- Main Title -->
-        <mxCell id="title" value="&lt;b style=&quot;font-size: 20px;&quot;&gt;منظومة منصة وَفِّر - مخطط المعمارية الشامل (System Architecture Diagram)&lt;/b&gt;&lt;br&gt;Clean Architecture &amp;amp; Multi-Tier Cross-Platform Ecosystem" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fillColor=#1E293B;fontColor=#FFFFFF;strokeColor=#0F172A;" vertex="1" parent="1">
-          <mxGeometry x="200" y="20" width="770" height="60" as="geometry" />
+
+        <!-- Header Title -->
+        <mxCell id="main_title" value="&lt;b style=&quot;font-size: 20px;&quot;&gt;منظومة منصة وَفِّر (Waffer) - مخطط المعمارية الهندسية الشاملة&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;Clean Architecture &amp;amp; Multi-Tier Enterprise Cross-Platform Ecosystem (.NET 10 + Flutter)&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fillColor=#0F172A;fontColor=#FFFFFF;strokeColor=#1E293B;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="20" width="1000" height="60" as="geometry" />
         </mxCell>
 
-        <!-- Container: Client Layer -->
-        <mxCell id="box_client" value="&lt;b style=&quot;font-size: 15px;&quot;&gt;1. طبقة واجهات العميل (Client / Presentation Tier)&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#F0FDF4;strokeColor=#16A34A;fontColor=#166534;startSize=30;" vertex="1" parent="1">
-          <mxGeometry x="60" y="110" width="480" height="340" as="geometry" />
-        </mxCell>
-        
-        <!-- Flutter Mobile App -->
-        <mxCell id="flutter_app" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;تطبيق الموبايل (Flutter Hybrid App)&lt;/b&gt;&lt;br&gt;(Android / iOS / Web)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0284C7;strokeColor=#0369A1;fontColor=#FFFFFF;" vertex="1" parent="box_client">
-          <mxGeometry x="30" y="45" width="420" height="50" as="geometry" />
-        </mxCell>
-        
-        <mxCell id="flutter_presentation" value="&lt;b&gt;Presentation Layer (UI &amp;amp; State)&lt;/b&gt;&lt;br&gt;Screens: Home, Favorites, Merchant Dashboard, Auth&lt;br&gt;Widgets: Animated Banner (3s), Filter SheetModal, Drawer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#38BDF8;fontColor=#0369A1;align=center;" vertex="1" parent="box_client">
-          <mxGeometry x="30" y="110" width="420" height="60" as="geometry" />
+        <!-- TIER 1: CLIENT TIER -->
+        <mxCell id="tier1_box" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;1. طبقة واجهات المستخدم وأجهزة العملاء (Client &amp;amp; User Devices Tier)&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#F8FAFC;strokeColor=#3B82F6;fontColor=#1E3A8A;startSize=28;horizontal=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="100" width="1080" height="150" as="geometry" />
         </mxCell>
 
-        <mxCell id="flutter_domain" value="&lt;b&gt;Domain Layer (Business Rules &amp;amp; Use Cases)&lt;/b&gt;&lt;br&gt;Use Cases: Login, RegisterMerchant, GetOffers, FilterOffers&lt;br&gt;Entities: User, Offer, Merchant, Category" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#94A3B8;fontColor=#334155;align=center;" vertex="1" parent="box_client">
-          <mxGeometry x="30" y="185" width="420" height="60" as="geometry" />
+        <mxCell id="t1_flutter" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;📱 تطبيق الموبايل (Flutter Cross-Platform)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;• واجهة المستهلك: تصفح العروض، البحث، الفلترة (SheetModal)، المفضلة&lt;br&gt;• واجهة التاجر: تسجيل متجر جديد، لوحة تحكم المتجر، نشر العروض&lt;br&gt;• شريط البنرات المتحرك كل 3 ثوانٍ | خط Cairo المحلي | مؤشرات Shimmer&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#60A5FA;fontColor=#1E40AF;align=left;spacingLeft=15;" vertex="1" parent="tier1_box">
+          <mxGeometry x="30" y="40" width="490" height="90" as="geometry" />
         </mxCell>
 
-        <mxCell id="flutter_data" value="&lt;b&gt;Data Layer (Repositories &amp;amp; Remote Source)&lt;/b&gt;&lt;br&gt;OffersRemoteDataSource (HTTP Client) | LocalStorage (Tokens)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#F59E0B;fontColor=#92400E;align=center;" vertex="1" parent="box_client">
-          <mxGeometry x="30" y="260" width="420" height="55" as="geometry" />
+        <mxCell id="t1_mvc_browser" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;💻 متصفح الويب - بوابة الإدارة (Web Browser - Admin Portal)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;• لوحة تحكم المدير المركزي (Desktop / Tablet Responsive)&lt;br&gt;• إدارة وتوثيق المتاجر الجديدة بضغطة زر (Approve / Reject)&lt;br&gt;• نظام الإيقاف المؤقت/النهائي مع السبب والمدة عبر Modal Dialogs&lt;br&gt;• تخصيص الإعلانات المميزة المدفوعة وتحديد أولوية الظهور في البنر&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#A78BFA;fontColor=#5B21B6;align=left;spacingLeft=15;" vertex="1" parent="tier1_box">
+          <mxGeometry x="560" y="40" width="490" height="90" as="geometry" />
         </mxCell>
 
-        <!-- Container: Admin Portal MVC -->
-        <mxCell id="box_admin" value="&lt;b style=&quot;font-size: 15px;&quot;&gt;2. بوابة الإدارة والتحكم (Admin Web Portal - MVC)&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#EFF6FF;strokeColor=#2563EB;fontColor=#1E40AF;startSize=30;" vertex="1" parent="1">
-          <mxGeometry x="630" y="110" width="480" height="340" as="geometry" />
-        </mxCell>
-        
-        <mxCell id="mvc_app" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;موقع الإدارة والمشرف (ASP.NET Core MVC)&lt;/b&gt;&lt;br&gt;Bootstrap 5 | Icons | DataTables.js | Custom Fonts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2563EB;strokeColor=#1D4ED8;fontColor=#FFFFFF;" vertex="1" parent="box_admin">
-          <mxGeometry x="30" y="45" width="420" height="50" as="geometry" />
+        <!-- TIER 2: APPLICATION & PRESENTATION SERVERS -->
+        <mxCell id="tier2_box" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;2. طبقة الخوادم والواجهات البرمجية (Application &amp;amp; Web Presentation Tier - ASP.NET Core 10)&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#F8FAFC;strokeColor=#10B981;fontColor=#065F46;startSize=28;horizontal=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="280" width="1080" height="170" as="geometry" />
         </mxCell>
 
-        <mxCell id="mvc_controllers" value="&lt;b&gt;MVC Controllers &amp;amp; ViewModels&lt;/b&gt;&lt;br&gt;DashboardController | MerchantsController | OffersController | AuthController" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#60A5FA;fontColor=#1E40AF;align=center;" vertex="1" parent="box_admin">
-          <mxGeometry x="30" y="110" width="420" height="55" as="geometry" />
+        <mxCell id="t2_web_api" value="&lt;b style=&quot;font-size: 13px;&quot;&gt;🔌 RESTful Web API (SanaaOffersApi.API)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;• &lt;b&gt;AuthController:&lt;/b&gt; تسجيل المستهلك، تسجيل التاجر، تسجيل الدخول&lt;br&gt;• &lt;b&gt;OffersController:&lt;/b&gt; جلب العروض، العروض المميزة (/sponsored)، إضافة عرض&lt;br&gt;• &lt;b&gt;MerchantsController:&lt;/b&gt; فحص حالة التوثيق والإيقاف للمتجر&lt;br&gt;• &lt;b&gt;Middleware:&lt;/b&gt; Global Exception Handler | DataAnnotations Validation&lt;br&gt;• &lt;b&gt;API Docs:&lt;/b&gt; Swagger / OpenAPI 3.0 UI Testing Tool&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#34D399;fontColor=#065F46;align=left;spacingLeft=15;" vertex="1" parent="tier2_box">
+          <mxGeometry x="30" y="40" width="490" height="115" as="geometry" />
         </mxCell>
 
-        <mxCell id="mvc_views" value="&lt;b&gt;Razor Views (Interactive UI)&lt;/b&gt;&lt;br&gt;5 Views per Table (Index, Details, Create, Edit, Delete)&lt;br&gt;Bootstrap Modals (إيقاف المتجر، التوثيق، الحذف)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#94A3B8;fontColor=#334155;align=center;" vertex="1" parent="box_admin">
-          <mxGeometry x="30" y="180" width="420" height="60" as="geometry" />
+        <mxCell id="t2_mvc_engine" value="&lt;b style=&quot;font-size: 13px;&quot;&gt;🌐 MVC Web Engine (SanaaOffers.MVC)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;• &lt;b&gt;Controllers:&lt;/b&gt; Dashboard, Merchants, Offers, Categories, Auth&lt;br&gt;• &lt;b&gt;Views (5 لكل جدول):&lt;/b&gt; Index, Details, Create, Edit, Delete&lt;br&gt;• &lt;b&gt;UI Framework:&lt;/b&gt; Bootstrap 5.3 + Bootstrap Icons + CSS Variables&lt;br&gt;• &lt;b&gt;Interactive Tables:&lt;/b&gt; DataTables.js (بحث، ترتيب، ترقيم صفحات)&lt;br&gt;• &lt;b&gt;Security:&lt;/b&gt; Role-Based Authorization + CSRF Antiforgery Tokens&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#FBBF24;fontColor=#92400E;align=left;spacingLeft=15;" vertex="1" parent="tier2_box">
+          <mxGeometry x="560" y="40" width="490" height="115" as="geometry" />
         </mxCell>
 
-        <mxCell id="mvc_logic" value="&lt;b&gt;Business Governance Logic&lt;/b&gt;&lt;br&gt;مراجعة وتوثيق المتاجر | الإيقاف المؤقت/النهائي | إدارة الإعلانات المميزة" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#EF4444;fontColor=#991B1B;align=center;" vertex="1" parent="box_admin">
-          <mxGeometry x="30" y="255" width="420" height="60" as="geometry" />
+        <!-- TIER 3: BUSINESS LOGIC & REPOSITORY -->
+        <mxCell id="tier3_box" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;3. طبقة منطق الأعمال والخدمات الأساسية (Core Domain &amp;amp; Business Logic Tier)&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#F8FAFC;strokeColor=#F59E0B;fontColor=#92400E;startSize=28;horizontal=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="480" width="1080" height="140" as="geometry" />
         </mxCell>
 
-        <!-- Container: Backend API Layer -->
-        <mxCell id="box_api" value="&lt;b style=&quot;font-size: 15px;&quot;&gt;3. طبقة الخدمات والواجهة البرمجية (Backend RESTful Web API - ASP.NET Core 10)&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#FAF5FF;strokeColor=#7C3AED;fontColor=#5B21B6;startSize=30;" vertex="1" parent="1">
-          <mxGeometry x="60" y="490" width="1050" height="150" as="geometry" />
-        </mxCell>
-        
-        <mxCell id="api_endpoints" value="&lt;b&gt;API Endpoints (Controllers)&lt;/b&gt;&lt;br&gt;/api/auth (Login, Register)&lt;br&gt;/api/offers (All, Sponsored)&lt;br&gt;/api/merchants | /api/categories" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#A78BFA;fontColor=#5B21B6;align=center;" vertex="1" parent="box_api">
-          <mxGeometry x="40" y="45" width="280" height="85" as="geometry" />
+        <mxCell id="t3_domain_rules" value="&lt;b style=&quot;font-size: 13px;&quot;&gt;قواعد العمل والتحكم (Business Logic Services)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;• &lt;b&gt;Merchant Lifecycle:&lt;/b&gt; التحقق من اعتماد المتجر (IsApproved) وحظر النشر للموقوفين فورياً&lt;br&gt;• &lt;b&gt;Suspension Rule:&lt;/b&gt; فحص تاريخ انتهاء الإيقاف المؤقت (SuspendedUntil) وإعادة التفعيل آلياً&lt;br&gt;• &lt;b&gt;Sponsored Ads Logic:&lt;/b&gt; فرز العروض المميزة حسب الأولوية والتاريخ النشط&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEB;strokeColor=#FCD34D;fontColor=#78350F;align=left;spacingLeft=15;" vertex="1" parent="tier3_box">
+          <mxGeometry x="30" y="40" width="490" height="85" as="geometry" />
         </mxCell>
 
-        <mxCell id="api_middleware" value="&lt;b&gt;Cross-Cutting Middleware&lt;/b&gt;&lt;br&gt;Global Exception Handler&lt;br&gt;JWT / Role-Based Authorization&lt;br&gt;Model Validation (DataAnnotations)&lt;br&gt;Swagger / OpenAPI UI (Testing)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#A78BFA;fontColor=#5B21B6;align=center;" vertex="1" parent="box_api">
-          <mxGeometry x="380" y="45" width="290" height="85" as="geometry" />
+        <mxCell id="t3_repository_pattern" value="&lt;b style=&quot;font-size: 13px;&quot;&gt;نمط مستودع البيانات (Repository Pattern &amp;amp; Unit of Work)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;• &lt;b&gt;Interfaces:&lt;/b&gt; IOffersRepository, IMerchantsRepository, ICategoriesRepository&lt;br&gt;• عزل كامل بين منطق البرمجة واستعلامات قاعدة البيانات (Loose Coupling)&lt;br&gt;• تسهيل اختبارات الوحدة (Unit Tests) وقابلية استبدال مزود البيانات مستقبلاً&lt;br&gt;• حقن التبعيات (Dependency Injection) وإدارة دورة حياة الكائنات (Scoped)&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#93C5FD;fontColor=#1E40AF;align=left;spacingLeft=15;" vertex="1" parent="tier3_box">
+          <mxGeometry x="560" y="40" width="490" height="85" as="geometry" />
         </mxCell>
 
-        <mxCell id="api_repository" value="&lt;b&gt;Repository Pattern &amp;amp; Core Services&lt;/b&gt;&lt;br&gt;IOffersRepository | IMerchantRepository&lt;br&gt;Unit of Work | Dependency Injection&lt;br&gt;Entity Framework Core 10 DbContext" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#A78BFA;fontColor=#5B21B6;align=center;" vertex="1" parent="box_api">
-          <mxGeometry x="730" y="45" width="280" height="85" as="geometry" />
+        <!-- TIER 4: DATA PERSISTENCE & STORAGE -->
+        <mxCell id="tier4_box" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;4. طبقة إدارة وتخزين البيانات (Data Persistence &amp;amp; Storage Tier - Entity Framework Core)&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#F8FAFC;strokeColor=#EF4444;fontColor=#991B1B;startSize=28;horizontal=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="650" width="1080" height="150" as="geometry" />
         </mxCell>
 
-        <!-- Container: Data Tier -->
-        <mxCell id="box_data" value="&lt;b style=&quot;font-size: 15px;&quot;&gt;4. طبقة قاعدة البيانات (Data Persistence Layer - Entity Framework Core)&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#FFFBEB;strokeColor=#D97706;fontColor=#92400E;startSize=30;" vertex="1" parent="1">
-          <mxGeometry x="60" y="670" width="1050" height="120" as="geometry" />
+        <mxCell id="t4_ef_core" value="&lt;b style=&quot;font-size: 13px;&quot;&gt;Entity Framework Core 10 (ORM)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;• DbContext &amp;amp; DbSet Entities&lt;br&gt;• LINQ Optimized Queries&lt;br&gt;• Code-First Migrations History&lt;br&gt;• ACID Transactions (نقاء العمليات)&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#FCA5A5;fontColor=#991B1B;align=center;" vertex="1" parent="tier4_box">
+          <mxGeometry x="30" y="40" width="220" height="95" as="geometry" />
         </mxCell>
 
-        <mxCell id="db_table_users" value="&lt;b&gt;Users Table&lt;/b&gt;&lt;br&gt;Id, Name, Email, Hash, Role" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#FEF3C7;strokeColor=#F59E0B;fontColor=#92400E;" vertex="1" parent="box_data">
-          <mxGeometry x="50" y="40" width="160" height="65" as="geometry" />
+        <mxCell id="t4_database" value="&lt;b style=&quot;font-size: 13px;&quot;&gt;Relational Database (SQLite / SQL Server)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;• &lt;b&gt;Stores Table:&lt;/b&gt; بيانات المتاجر، الشعار، حالة التوثيق، الإيقاف&lt;br&gt;• &lt;b&gt;Offers Table:&lt;/b&gt; العروض، الأسعار، الصور، الإعلانات المميزة (FK -&gt; Stores)&lt;br&gt;• &lt;b&gt;Categories Table:&lt;/b&gt; الأقسام والتصنيفات التجارية (FK -&gt; Offers)&lt;br&gt;• &lt;b&gt;Users Table:&lt;/b&gt; الحسابات المشفرة والصلاحيات (Admin, Merchant, User)&lt;br&gt;• &lt;b&gt;Branches &amp;amp; Favorites Tables:&lt;/b&gt; فروع المتاجر وقوائم مفضلة المستهلكين&lt;/span&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#FEF3C7;strokeColor=#F59E0B;fontColor=#92400E;align=left;spacingLeft=15;" vertex="1" parent="tier4_box">
+          <mxGeometry x="270" y="35" width="530" height="105" as="geometry" />
         </mxCell>
 
-        <mxCell id="db_table_merchants" value="&lt;b&gt;Stores (Merchants)&lt;/b&gt;&lt;br&gt;Id, Name, Logo, IsApproved, IsSuspended" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#FEF3C7;strokeColor=#F59E0B;fontColor=#92400E;" vertex="1" parent="box_data">
-          <mxGeometry x="270" y="40" width="190" height="65" as="geometry" />
+        <mxCell id="t4_file_storage" value="&lt;b style=&quot;font-size: 13px;&quot;&gt;Media Storage (الوسائط)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;• صور العروض والتخفيضات&lt;br&gt;• شعارات المتاجر (Logos)&lt;br&gt;• مسار: /wwwroot/uploads&lt;br&gt;• خدمة الاستضافة الثابتة&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#9CA3AF;fontColor=#374151;align=center;" vertex="1" parent="tier4_box">
+          <mxGeometry x="820" y="40" width="230" height="95" as="geometry" />
         </mxCell>
 
-        <mxCell id="db_table_offers" value="&lt;b&gt;Offers Table (Images)&lt;/b&gt;&lt;br&gt;Id, Title, Price, Img, IsSponsored, StoreId" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#FEF3C7;strokeColor=#F59E0B;fontColor=#92400E;" vertex="1" parent="box_data">
-          <mxGeometry x="520" y="40" width="200" height="65" as="geometry" />
+        <!-- CONNECTION ARROWS -->
+        <!-- Flutter to Web API -->
+        <mxCell id="arr_flutter_api" value="&lt;b&gt;HTTPS / REST JSON (Port 5232)&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=2.5;strokeColor=#0284C7;" edge="1" parent="1" source="t1_flutter" target="t2_web_api">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
-        <mxCell id="db_table_cats" value="&lt;b&gt;Categories Table&lt;/b&gt;&lt;br&gt;Id, Name, Icon, Description" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#FEF3C7;strokeColor=#F59E0B;fontColor=#92400E;" vertex="1" parent="box_data">
-          <mxGeometry x="780" y="40" width="190" height="65" as="geometry" />
+        <!-- Browser to MVC -->
+        <mxCell id="arr_browser_mvc" value="&lt;b&gt;HTTPS / Razor HTTP (Port 5069)&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=2.5;strokeColor=#7C3AED;" edge="1" parent="1" source="t1_mvc_browser" target="t2_mvc_engine">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
-        <!-- Connectors -->
-        <mxCell id="conn_flutter_api" value="&lt;b&gt;HTTPS / REST JSON&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=3;strokeColor=#0284C7;" edge="1" parent="1" source="flutter_data" target="box_api">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="300" y="470" />
-              <mxPoint x="323" y="470" />
-            </Array>
-          </mxGeometry>
+        <!-- API & MVC to Tier 3 -->
+        <mxCell id="arr_tier2_tier3" value="&lt;b&gt;Inversion of Control (IoC) &amp;amp; Service Layer Invocation&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=2.5;strokeColor=#10B981;" edge="1" parent="1" source="tier2_box" target="tier3_box">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
-        <mxCell id="conn_mvc_api" value="&lt;b&gt;Internal DbContext / Service Direct Call&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=3;strokeColor=#2563EB;" edge="1" parent="1" source="mvc_logic" target="box_api">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="870" y="470" />
-              <mxPoint x="848" y="470" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-
-        <mxCell id="conn_api_db" value="&lt;b&gt;LINQ Queries / SQL Transactions (ACID)&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=3;strokeColor=#7C3AED;" edge="1" parent="1" source="box_api" target="box_data">
+        <!-- Tier 3 to Tier 4 -->
+        <mxCell id="arr_tier3_tier4" value="&lt;b&gt;EF Core DbContext ◄► Relational Schema Mapping (CRUD &amp;amp; ACID)&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=2.5;strokeColor=#F59E0B;" edge="1" parent="1" source="tier3_box" target="tier4_box">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
