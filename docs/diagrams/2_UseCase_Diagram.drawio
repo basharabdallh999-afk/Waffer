@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2026-09-11T13:40:00.000Z" agent="Antigravity" version="21.0.0" type="device">
+<mxfile host="app.diagrams.net" modified="2026-09-11T13:45:00.000Z" agent="Antigravity" version="21.0.0" type="device">
   <diagram id="Direct_UseCase_Diagram" name="UML Use Case Diagram">
     <mxGraphModel dx="1300" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1350" pageHeight="1150" background="#FFFFFF" math="0" shadow="0">
       <root>
@@ -127,41 +127,95 @@
           <mxGeometry x="1160" y="470" width="75" height="130" as="geometry" />
         </mxCell>
 
-        <!-- ================= DIRECT SOLID CONNECTION LINES ================= -->
+        <!-- ================= DIRECT SOLID CONNECTION LINES WITH MXGEOMETRY ================= -->
         <!-- Consumer Lines -->
-        <mxCell id="line_c_login" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_login" />
-        <mxCell id="line_c_1" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_c1" />
-        <mxCell id="line_c_2" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_c2" />
-        <mxCell id="line_c_3" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_c3" />
-        <mxCell id="line_c_4" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_c4" />
-        <mxCell id="line_c_5" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_c5" />
-        <mxCell id="line_c_6" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_c6" />
+        <mxCell id="line_c_login" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_c_1" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_c1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_c_2" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_c2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_c_3" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_c_4" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_c4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_c_5" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_c5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_c_6" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#2563EB;" edge="1" parent="1" source="actor_consumer" target="uc_c6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
 
         <!-- Merchant Lines -->
-        <mxCell id="line_m_login" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_login" />
-        <mxCell id="line_m_1" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_m1" />
-        <mxCell id="line_m_2" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_m2" />
-        <mxCell id="line_m_3" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_m3" />
-        <mxCell id="line_m_4" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_m4" />
-        <mxCell id="line_m_5" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_m5" />
-        <mxCell id="line_m_6" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_m6" />
+        <mxCell id="line_m_login" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m_1" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_m1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m_2" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_m2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m_3" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_m3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m_4" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_m4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m_5" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_m5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m_6" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#059669;" edge="1" parent="1" source="actor_merchant" target="uc_m6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
 
         <!-- Admin Lines -->
-        <mxCell id="line_a_login" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_login" />
-        <mxCell id="line_a_1" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a1" />
-        <mxCell id="line_a_2" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a2" />
-        <mxCell id="line_a_3" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a3" />
-        <mxCell id="line_a_4" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a4" />
-        <mxCell id="line_a_5" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a5" />
-        <mxCell id="line_a_6" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a6" />
-        <mxCell id="line_a_7" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a7" />
-        <mxCell id="line_a_8" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a8" />
-        <mxCell id="line_a_9" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a9" />
-        <mxCell id="line_a_10" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a10" />
+        <mxCell id="line_a_login" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_a_1" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_a_2" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_a_3" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_a_4" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_a_5" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_a_6" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_a_7" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_a_8" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_a_9" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_a_10" style="endArrow=none;html=1;strokeWidth=1.8;strokeColor=#DC2626;" edge="1" parent="1" source="actor_admin" target="uc_a10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
 
         <!-- INCLUDES (Dashed Lines with open arrow) -->
-        <mxCell id="inc_pub" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;dashed=1;strokeColor=#D97706;fontColor=#92400E;fontSize=10;" edge="1" parent="1" source="uc_m3" target="uc_login" />
-        <mxCell id="inc_app" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;dashed=1;strokeColor=#D97706;fontColor=#92400E;fontSize=10;" edge="1" parent="1" source="uc_a3" target="uc_login" />
+        <mxCell id="inc_pub" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;dashed=1;strokeColor=#D97706;fontColor=#92400E;fontSize=10;" edge="1" parent="1" source="uc_m3" target="uc_login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc_app" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;dashed=1;strokeColor=#D97706;fontColor=#92400E;fontSize=10;" edge="1" parent="1" source="uc_a3" target="uc_login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
 
       </root>
     </mxGraphModel>
